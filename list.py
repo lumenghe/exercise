@@ -135,8 +135,32 @@ print(length_double(double_example))
 def max_single(head):
     """
     Get maximum of a single-linked list
-    """   
+    """
+    current = head
+    max_value = current.value
+    while current.next:
+        max_value = max(current.next.value, max_value)
+        current = current.next
+        
+    return max_value
     
+    
+print(max_single(single_example))
+
+def max_double(head):
+    """
+    Get maximum of a double-linked list
+    """
+    current = head
+    max = head.value
+    while current:
+        if max<current.value:
+            max = current.value
+        current = current.next
+        
+    return max
+print ('max double=', max_double(double_example) == max(list_example))
+
     
     
     
