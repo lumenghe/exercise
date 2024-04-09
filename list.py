@@ -178,4 +178,27 @@ def revert_single(head):
 
 print_single(single_example)
 print_single(revert_single(single_example))
+
+
+def revert_double(head):
+    """
+    Revert a double-linked list (return the former last element as head of the new list)
+    """
+    prev = head
+    current = head.next
+    while prev.next:
+        prev.next = prev.prev
+        prev.prev = current
+        prev = current
+        current = current.next
+    
+    prev.next = prev.prev
+    prev.prev = None
+    return prev
+    
+
+print_double(double_example)
+print_double(revert_double(double_example))
+   
+    
     
