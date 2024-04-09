@@ -97,3 +97,46 @@ def print_double(head):
 
 double_example = list2double(list_example)
 print_double(double_example)
+
+
+def length_single(head):
+    """
+    Compute length of a single-linked list
+    """
+    count = 1
+    current = head
+    while current.next:
+        count += 1
+        current = current.next
+        
+        
+    return count
+    
+print(len(list_example))
+print(length_single(single_example))
+
+
+def length_double(head):
+    """
+    Compute length of a double-linked list
+    """
+    count = 1
+    current = head
+    while current.next:
+        count += 1
+        current = current.next
+        
+    return count    
+    
+
+print(length_double(double_example))
+
+
+def max_single(head):
+    """
+    Get maximum of a single-linked list
+    """   
+    
+    
+    
+    
