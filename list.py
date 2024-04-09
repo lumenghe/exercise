@@ -162,5 +162,20 @@ def max_double(head):
 print ('max double=', max_double(double_example) == max(list_example))
 
     
+def revert_single(head):
+    """
+    Revert a single-linked list (return the former last element as head of the new list)
+    """
+    current = head
+    prev = None
+    while current:         
+         next = current.next
+         current.next = prev
+         prev = current
+         current = next
     
+    return prev
+
+print_single(single_example)
+print_single(revert_single(single_example))
     
