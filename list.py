@@ -11,7 +11,9 @@ class DoubleList(object):
         self.prev = None
 
 
+# fmt: off
 list_example = [5,1,2,3,4,9,7,7,4,5,6,6,3,1,0,1,4,5,6,7,8,1,6,9,7,1,2,3]
+# fmt: on
 
 
 def list2single(l):
@@ -226,3 +228,21 @@ def get_element_single(head, i):
 
 
 print(get_element_single(single_example, 5).value)
+
+
+def get_element_double(head, i):
+    """
+    Get i-th element in a single-linked list
+    """
+    index = 0
+    current = head
+    while index < i:
+        current = current.next
+        index += 1
+        if current is None:
+            raise IndexError
+
+    return current
+
+
+# print get_element_double(double_example, 5).value
