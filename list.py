@@ -108,10 +108,10 @@ def length_single(head):
     while current.next:
         count += 1
         current = current.next
-        
-        
+
     return count
-    
+
+
 print(len(list_example))
 print(length_single(single_example))
 
@@ -125,9 +125,9 @@ def length_double(head):
     while current.next:
         count += 1
         current = current.next
-        
-    return count    
-    
+
+    return count
+
 
 print(length_double(double_example))
 
@@ -141,11 +141,12 @@ def max_single(head):
     while current.next:
         max_value = max(current.next.value, max_value)
         current = current.next
-        
+
     return max_value
-    
-    
+
+
 print(max_single(single_example))
+
 
 def max_double(head):
     """
@@ -154,51 +155,74 @@ def max_double(head):
     current = head
     max = head.value
     while current:
-        if max<current.value:
+        if max < current.value:
             max = current.value
         current = current.next
-        
-    return max
-print ('max double=', max_double(double_example) == max(list_example))
 
-    
+    return max
+
+
+print("max double=", max_double(double_example) == max(list_example))
+
+
 def revert_single(head):
     """
     Revert a single-linked list (return the former last element as head of the new list)
     """
     current = head
     prev = None
-    while current:         
-         next = current.next
-         current.next = prev
-         prev = current
-         current = next
-    
+
+    while current:
+        next = current.next
+        current.next = prev
+        prev = current
+        current = next
+
     return prev
 
-print_single(single_example)
-print_single(revert_single(single_example))
+
+# print_single(single_example)
+# print_single(revert_single(single_example))
 
 
 def revert_double(head):
     """
     Revert a double-linked list (return the former last element as head of the new list)
     """
+
     prev = head
     current = head.next
+
     while prev.next:
         prev.next = prev.prev
         prev.prev = current
+        next = current.next
         prev = current
         current = current.next
-    
+        # print(current.value)
+
     prev.next = prev.prev
     prev.prev = None
     return prev
-    
 
-print_double(double_example)
-print_double(revert_double(double_example))
-   
-    
-    
+
+# print_double(double_example)
+# print_double(revert_double(double_example))
+
+
+def get_element_single(head, i):
+    """
+    Get i-th element in a single-linked list
+    """
+    index = 0
+    current = head
+    while index < i:
+        current = current.next
+        if current is None:
+            raise IndexError
+        index += 1
+
+    return current
+
+
+print(get_element_single(single_example, 5).value)
