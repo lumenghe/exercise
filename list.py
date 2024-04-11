@@ -248,22 +248,47 @@ def get_element_double(head, i):
 # print get_element_double(double_example, 5).value
 
 
-
 def delete_element_single(head, i):
     """
     Delete i-th element in a single-linked list
     """
+    if i == 0:
+        return head.next
+
     index = 0
     current = head
-    while index < i -1:    
-       current = current.next
-       if current is None:
-           raise IndexError
-       index += 1
-    
+    while index < i - 1:
+        current = current.next
+        if current is None:
+            raise IndexError
+        index += 1
+
     current.next = current.next.next
-    
+
     return head
 
-#print_single(delete_element_single(single_example, 1))
-    
+
+# print_single(delete_element_single(single_example, 1))
+
+
+def delete_element_double(head, i):
+
+    if i == 0:
+        head.next.prev = None
+        return head.next
+
+    index = 0
+    current = head
+    while index < i - 1:
+        current = current.next
+        if current is None:
+            raise IndexError
+        index += 1
+
+    current.next = current.next.next
+    current.next.prev = current
+
+    return head
+
+
+# print_double(delete_element_double(double_example, 10))
