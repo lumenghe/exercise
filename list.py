@@ -114,8 +114,8 @@ def length_single(head):
     return count
 
 
-print(len(list_example))
-print(length_single(single_example))
+# print(len(list_example))
+# print(length_single(single_example))
 
 
 def length_double(head):
@@ -131,7 +131,7 @@ def length_double(head):
     return count
 
 
-print(length_double(double_example))
+# print(length_double(double_example))
 
 
 def max_single(head):
@@ -147,7 +147,7 @@ def max_single(head):
     return max_value
 
 
-print(max_single(single_example))
+# print(max_single(single_example))
 
 
 def max_double(head):
@@ -164,7 +164,7 @@ def max_double(head):
     return max
 
 
-print("max double=", max_double(double_example) == max(list_example))
+# print("max double=", max_double(double_example) == max(list_example))
 
 
 def revert_single(head):
@@ -201,7 +201,6 @@ def revert_double(head):
         next = current.next
         prev = current
         current = current.next
-        # print(current.value)
 
     prev.next = prev.prev
     prev.prev = None
@@ -227,7 +226,7 @@ def get_element_single(head, i):
     return current
 
 
-print(get_element_single(single_example, 5).value)
+# print(get_element_single(single_example, 5).value)
 
 
 def get_element_double(head, i):
@@ -301,8 +300,8 @@ def insert_element_single(head, i, e):
     if i == 0:
         e.next = head
         return e
-    index = 0
 
+    index = 0
     current = head
     while index < i - 1:
         current = current.next
@@ -318,3 +317,35 @@ def insert_element_single(head, i, e):
 
 # new_element = SingleList(100)
 # print_single(insert_element_single(single_example, 3, new_element))
+
+
+def insert_element_double(head, i, e):
+    """
+    Insert element at position i in a double-linked list
+    """
+    if i == 0:
+        e.next = head
+        e.prev = None
+        head.prev = e
+        return e
+
+    index = 0
+    current = head
+    while index < i - 1:
+        current = current.next
+        if current is None:
+            raise IndexError
+        index += 1
+
+    e.next = current.next
+    e.prev = current
+    current.next = e
+    if e.next is not None:
+        e.next.prev = e
+    return head
+
+
+new_element = DoubleList(100)
+print(len(list_example))
+print_double(double_example)
+print_double(insert_element_double(double_example, 28, new_element))
