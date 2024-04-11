@@ -292,3 +292,29 @@ def delete_element_double(head, i):
 
 
 # print_double(delete_element_double(double_example, 10))
+
+
+def insert_element_single(head, i, e):
+    """
+    Insert element at position i in a single-linked list
+    """
+    if i == 0:
+        e.next = head
+        return e
+    index = 0
+
+    current = head
+    while index < i - 1:
+        current = current.next
+        if current is None:
+            raise IndexError
+        index += 1
+
+    e.next = current.next
+    current.next = e
+
+    return head
+
+
+# new_element = SingleList(100)
+# print_single(insert_element_single(single_example, 3, new_element))
