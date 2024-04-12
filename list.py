@@ -423,7 +423,26 @@ def split_double(head):
     return head, head2
 
 
-double_example = list2double(list_example)
-(head_1, head_2) = split_double(double_example)
-print_double(head_1)
-print_double(head_2)
+# double_example = list2double(list_example)
+# (head_1, head_2) = split_double(double_example)
+# print_double(head_1)
+# print_double(head_2)
+
+
+def remove_duplicates_single(head):
+    """
+    Remove duplicates from a single-linked list, only O(1) extra memory
+    """
+    label = head
+    while label:
+        current = label
+        while current:
+            if current.next and current.next.value == label.value:
+                current.next = current.next.next
+            current = current.next
+        label = label.next
+    return head
+
+
+single_example = list2single(list_example)
+print_single(remove_duplicates_single(single_example))
