@@ -395,3 +395,35 @@ def split_single(head):
 # (head_1, head_2) = split_single(single_example)
 # print_single(head_1)
 # print_single(head_2)
+
+
+def split_double(head):
+    """
+    Splits a double-linked list into two lists by separating even and odd positions, returning heads for both new lists
+    """
+
+    head2 = head.next
+    prev = head
+    current = head.next
+
+    while current.next:
+        prev.next = current.next
+        prev = current
+        current = current.next
+
+    prev.next = None
+
+    while prev.prev:
+        current.prev = prev.prev
+        current = prev
+        prev = prev.prev
+
+    current.prev = None
+
+    return head, head2
+
+
+double_example = list2double(list_example)
+(head_1, head_2) = split_double(double_example)
+print_double(head_1)
+print_double(head_2)
