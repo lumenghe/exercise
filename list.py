@@ -375,3 +375,23 @@ def concatenate_double(head1, head2):
     current.next = head2
     head2.prev = current
     return head1
+
+
+def split_single(head):
+    """
+    Splits a single-linked list into two lists by separating even and odd positions, returning heads for both new lists
+    """
+    prev = head
+    head2 = current = head.next
+    while current:
+        prev.next = current.next
+        prev = current
+        current = current.next
+    prev.next = None
+
+    return head, head2
+
+
+# (head_1, head_2) = split_single(single_example)
+# print_single(head_1)
+# print_single(head_2)
