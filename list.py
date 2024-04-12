@@ -345,7 +345,33 @@ def insert_element_double(head, i, e):
     return head
 
 
-new_element = DoubleList(100)
-print(len(list_example))
-print_double(double_example)
-print_double(insert_element_double(double_example, 28, new_element))
+# new_element = DoubleList(100)
+# print(len(list_example))
+# print_double(double_example)
+# print_double(insert_element_double(double_example, 28, new_element))
+
+
+def concatenate_single(head1, head2):
+    """
+    Concatenate two single-linked lists, head of the new list is head of the first list
+    """
+    current = head1
+    while current.next:
+        current = current.next
+
+    current.next = head2
+
+    return head1
+
+
+def concatenate_double(head1, head2):
+    """
+    Concatenate two double-linked lists, head of the new list is head of the first list
+    """
+    current = head1
+    while current.next:
+        current = current.next
+
+    current.next = head2
+    head2.prev = current
+    return head1
