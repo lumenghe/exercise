@@ -502,4 +502,43 @@ def sort_single(head):
     return new_head
 
 
-print_single(sort_single(single_example))
+# print_single(sort_single(single_example))
+# print_single(sort_single_switch(list2single(list_example)))
+
+
+def switch_double(prev, current, next, next_next):
+    if prev is not None:
+        prev.next = next
+    current.prev = next
+    current.next = next_next
+    next.next = current
+    next.prev = prev
+    if next_next is not None:
+        next_next.prev = current
+    return next
+
+
+def sort_double(head):
+    """
+    Sort a double-linked list, only O(1) extra memory
+    """
+    done = False
+    new_head = head
+    while not done:
+        prev = None
+        current = new_head
+        done = True
+        while current.next:
+            if current.value > current.next.value:
+                done = False
+                if current is new_head:
+                    new_head = current.next
+                prev = switch_double(prev, current, current.next, current.next.next)
+            else:
+                prev = current
+                current = current.next
+
+    return new_head
+
+
+print_double(sort_double(single_example))
