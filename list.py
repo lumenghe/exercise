@@ -578,3 +578,24 @@ def palindrome_double(head):
 
 print(palindrome_double(list2double(example_palindrome)))
 print(palindrome_double(list2double(example_not_palindrome)))
+
+
+def palindrome_single(head):
+
+    first = head
+    last = None
+    while first:
+        cursor = first
+        while cursor.next is not last:
+            cursor = cursor.next
+        if first.value != cursor.value:
+            return False
+        first = first.next
+        last = cursor
+        if first is last or first is last.next:
+            break
+    return True
+
+
+print(palindrome_single(list2single(example_palindrome)))
+print(palindrome_single(list2single(example_not_palindrome)))
