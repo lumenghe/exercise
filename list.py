@@ -244,7 +244,7 @@ def get_element_double(head, i):
     return current
 
 
-# print get_element_double(double_example, 5).value
+# print(get_element_double(double_example, 5).value)
 
 
 def delete_element_single(head, i):
@@ -444,5 +444,28 @@ def remove_duplicates_single(head):
     return head
 
 
-single_example = list2single(list_example)
-print_single(remove_duplicates_single(single_example))
+# single_example = list2single(list_example)
+# print_single(remove_duplicates_single(single_example))
+
+
+def remove_duplicates_double(head):
+    """
+    Remove duplicates from a double-linked list, only O(1) extra memory
+    """
+    label = head
+
+    while label:
+        current = label
+        while current:
+            if current.next and current.next.value == label.value:
+                current.next = current.next.next
+                if current.next:
+                    current.next.prev = current
+            current = current.next
+        label = label.next
+
+    return head
+
+
+double_example = list2double(list_example)
+print_double(remove_duplicates_double(double_example))
