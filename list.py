@@ -467,5 +467,5 @@ def remove_duplicates_double(head):
     return head
 
 
-double_example = list2double(list_example)
-print_double(remove_duplicates_double(double_example))
+#double_example = list2double(list_example)
+#print_double(remove_duplicates_double(double_example))
