@@ -467,5 +467,39 @@ def remove_duplicates_double(head):
     return head
 
 
-#double_example = list2double(list_example)
-#print_double(remove_duplicates_double(double_example))
+# double_example = list2double(list_example)
+# print_double(remove_duplicates_double(double_example))
+
+
+def hehe_switch(prev, current, next):
+    if prev is not None:
+        prev.next = next
+    current.next = next.next
+    next.next = current
+    return next
+
+
+def sort_single(head):
+    """
+    Sort a single-linked list, only O(1) extra memory
+    """
+    done = False
+    new_head = head
+    while not done:
+        prev = None
+        current = new_head
+        done = True
+        while current.next:
+            if current.value > current.next.value:
+                if current is new_head:
+                    new_head = current.next
+                prev = hehe_switch(prev, current, current.next)
+                done = False
+            else:
+                prev = current
+                current = current.next
+
+    return new_head
+
+
+print_single(sort_single(single_example))
