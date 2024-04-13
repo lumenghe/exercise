@@ -471,7 +471,7 @@ def remove_duplicates_double(head):
 # print_double(remove_duplicates_double(double_example))
 
 
-def hehe_switch(prev, current, next):
+def switch(prev, current, next):
     if prev is not None:
         prev.next = next
     current.next = next.next
@@ -493,7 +493,7 @@ def sort_single(head):
             if current.value > current.next.value:
                 if current is new_head:
                     new_head = current.next
-                prev = hehe_switch(prev, current, current.next)
+                prev = switch(prev, current, current.next)
                 done = False
             else:
                 prev = current
