@@ -541,4 +541,40 @@ def sort_double(head):
     return new_head
 
 
-print_double(sort_double(single_example))
+# print_double(sort_double(single_example))
+
+
+example_palindrome = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+example_not_palindrome = [1, 2, 3, 4, 5, 6, 6, 7, 5, 4, 3, 2, 1]
+
+
+def get_last(head):
+    current = head
+    while current.next:
+        current = current.next
+    return current
+
+
+def palindrome_double(head):
+    """
+    Returns true iff the double link list is a palindrome
+    """
+    last = get_last(head)
+
+    first_current = head
+    second_current = last
+    while first_current and second_current:
+        if first_current.value == second_current.value:
+            first_current = first_current.next
+            second_current = second_current.prev
+        else:
+            return False
+
+    if first_current is None and second_current is None:
+        return True
+
+    raise IndexError
+
+
+print(palindrome_double(list2double(example_palindrome)))
+print(palindrome_double(list2double(example_not_palindrome)))
