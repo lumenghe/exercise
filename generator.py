@@ -21,7 +21,7 @@ class NewObject:
     value: str
     _next: None
 
-    def __init__(self, value):
+    def __init__(self, value: str):
         self.value = value
 
     def __iter__(self):
