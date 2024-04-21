@@ -7,6 +7,10 @@ def length_hash(s: str) -> int:
     return len(s)
 
 
+def unicode_hash(s: str) -> int:
+    return sum(list(map(lambda letter: ord(letter) - ord("A") + 1, list(s))))
+
+
 def hashli_hash(s: str) -> int:
     return int(hashlib.md5(s.encode("utf-8")).hexdigest(), 16)
 
@@ -59,4 +63,6 @@ def pass_hash_func(hash_func: "hash_func") -> None:
 
 if __name__ == "__main__":
     pass_hash_func(length_hash)
+    pass_hash_func(unicode_hash)
+
     pass_hash_func(hashli_hash)
