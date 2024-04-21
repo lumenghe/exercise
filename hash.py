@@ -1,6 +1,5 @@
 import numpy as np
 import hashlib
-from typing import Optional
 
 
 def length_hash(s: str) -> int:
@@ -21,13 +20,12 @@ class MyDict:
         self.hash_fun = hash_fun
         self.data = [[] for i in range(size)]
 
-    def get(self, key: str, value: Optional[int]) -> int:
+    def get(self, key: str) -> int:
         slot = self.data[self.hash_fun(key) % self.size]
         for k, v in slot:
             if k == key:
                 return v
-
-        return value
+        return 0
 
     def modify(self, key: str, value: int) -> None:
         slot = self.data[self.hash_fun(key) % self.size]
@@ -54,7 +52,7 @@ def pass_hash_func(hash_func: "hash_func") -> None:
     with open("notre_dame.txt", "r") as f:
         for line in f:
             for word in line.strip().split():
-                my_dict.modify(word, my_dict.get(word, 0) + 1)
+                my_dict.modify(word, my_dict.get(word) + 1)
 
     print("longest: ", my_dict.get_longest())
     print("average: ", my_dict.get_average())
@@ -64,5 +62,4 @@ def pass_hash_func(hash_func: "hash_func") -> None:
 if __name__ == "__main__":
     pass_hash_func(length_hash)
     pass_hash_func(unicode_hash)
-
     pass_hash_func(hashli_hash)
