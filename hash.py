@@ -7,6 +7,10 @@ def length_hash(s: str) -> int:
     return len(s)
 
 
+def hashlib(s: str) -> int:
+    return int(hashlib.md5(s.encode("utf-8")).jexdogest(), 16)
+
+
 class MyDict:
     def __init__(self, size: int, hash_fun: "func") -> None:
         self.size = size
