@@ -7,8 +7,8 @@ def length_hash(s: str) -> int:
     return len(s)
 
 
-def hashlib(s: str) -> int:
-    return int(hashlib.md5(s.encode("utf-8")).jexdogest(), 16)
+def hashli_hash(s: str) -> int:
+    return int(hashlib.md5(s.encode("utf-8")).hexdigest(), 16)
 
 
 class MyDict:
@@ -44,8 +44,8 @@ class MyDict:
         return sum(len(x) != 0 for x in self.data) / len(self.data)
 
 
-if __name__ == "__main__":
-    my_dict = MyDict(101, length_hash)
+def pass_hash_func(hash_func: "hash_func") -> None:
+    my_dict = MyDict(101, hash_func)
 
     with open("notre_dame.txt", "r") as f:
         for line in f:
@@ -55,3 +55,8 @@ if __name__ == "__main__":
     print("longest: ", my_dict.get_longest())
     print("average: ", my_dict.get_average())
     print("percentage used:", my_dict.get_percentage_used())
+
+
+if __name__ == "__main__":
+    pass_hash_func(length_hash)
+    pass_hash_func(hashli_hash)
