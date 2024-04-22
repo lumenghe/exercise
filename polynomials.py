@@ -63,6 +63,12 @@ class PolyNomials:
         added_list = [x + y for x, y in zip(l1, l2)]
         return PolyNomials(added_list)
 
+    def opposition(self):
+        return PolyNomials(list(map(lambda x: -x, self.coefficient)))
+
+    def __sub___(self, other):
+        return self.__add__(other.opposition())
+
 
 if __name__ == "__main__":
     polynomials_1 = PolyNomials([1, 2, -1, 0, 12])
