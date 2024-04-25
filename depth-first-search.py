@@ -1,11 +1,4 @@
-graph = {
-    'A' : ['B','C'],
-    'B' : ['D', 'E'],
-    'C' : ['F'],
-    'D' : [],
-    'E' : ['F'],
-    'F' : []
-}
+graph = {"A": ["B", "C"], "B": ["D", "E"], "C": ["F"], "D": [], "E": ["F"], "F": []}
 
 
 def dfs(visited: list, graph: dict, node: str) -> None:
@@ -16,5 +9,4 @@ def dfs(visited: list, graph: dict, node: str) -> None:
             dfs(visited, graph, neighbour)
 
 
-
-dfs(visited=[], graph=graph, node='A')
+dfs(visited=[], graph=graph, node="A")

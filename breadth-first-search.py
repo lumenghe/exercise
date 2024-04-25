@@ -1,11 +1,5 @@
-graph = {
-  'A' : ['B','C'],
-  'B' : ['D', 'E'],
-  'C' : ['F'],
-  'D' : [],
-  'E' : ['F'],
-  'F' : []
-}
+graph = {"A": ["B", "C"], "B": ["D", "E"], "C": ["F"], "D": [], "E": ["F"], "F": []}
+
 
 def bfs(visited: list, graph: dict, node: str) -> None:
     visited = [node]
@@ -17,6 +11,6 @@ def bfs(visited: list, graph: dict, node: str) -> None:
             if neighbour not in visited:
                 visited.append(neighbour)
                 queue.append(neighbour)
-            
 
-bfs(visited=[], graph=graph, node='A')
+
+bfs(visited=[], graph=graph, node="A")

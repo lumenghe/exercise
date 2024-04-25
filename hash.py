@@ -1,5 +1,6 @@
-import numpy as np
 import hashlib
+
+import numpy as np
 
 
 def length_hash(s: str) -> int:

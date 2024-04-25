@@ -1,6 +1,6 @@
 import math
-from scipy.special import comb
 
+from scipy.special import comb
 
 if __name__ == "__main__":
     print(math.factorial(6))

@@ -16,3 +16,17 @@ clean-build: ## remove build artifacts
 
 .PHONY: clean
 clean: clean-build clean-pyc  ## remove all build, test, coverage and Python artifacts
+
+
+.PHONY: pylint
+pylint:
+	pylint *.py
+
+.PHONY: flake
+flake: ## check style with flake8
+	flake8 *.py
+
+.PHONY: format
+format:
+	isort *.py -l 120
+	black --target-version py310 *.py --line-length 120

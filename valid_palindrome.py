@@ -41,20 +41,12 @@ Constraints:
 
 def is_palindrome_first(s: str) -> bool:
 
-    s = [
-        c.lower()
-        for c in s
-        if (c >= "A" and c <= "Z") or (c >= "a" and c <= "z") or (c >= "0" and c <= "9")
-    ]
+    s = [c.lower() for c in s if (c >= "A" and c <= "Z") or (c >= "a" and c <= "z") or (c >= "0" and c <= "9")]
     return s == s[::-1]
 
 
 def is_palindrome_second(s: str) -> bool:
-    s = [
-        c.lower()
-        for c in s
-        if (c >= "A" and c <= "Z") or (c >= "a" and c <= "z") or (c >= "0" and c <= "9")
-    ]
+    s = [c.lower() for c in s if (c >= "A" and c <= "Z") or (c >= "a" and c <= "z") or (c >= "0" and c <= "9")]
 
     for i in range(len(s) // 2):
         if s[i] != s[-i - 1]:
