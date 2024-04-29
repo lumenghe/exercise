@@ -80,4 +80,6 @@ def longest_palindrome(s: str) -> str:
     return Max_Str
 
 
-print(longest_palindrome(s="babaddtattarrattatddetartrateedredividerb"))
+if __name__ == "__main__":
+
+    print(longest_palindrome(s="babaddtattarrattatddetartrateedredividerb"))
