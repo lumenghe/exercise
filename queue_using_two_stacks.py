@@ -96,35 +96,85 @@ Dequeue the value at the head of the queue,
 ; .
 """
 
+ENQUEUE = 1
+DEQUEUE = 2
+PRINT = 3
+
+
+def read_command():
+    parts = input().strip().split(" ")
+    cmd = int(parts[0])
+
+    if len(parts) == 1:
+        return (cmd, None)
+    try:
+        arg = int(parts[1])
+    except ValueError:
+        arg = parts[1]
+
+    return cmd, arg
+
+
+class Stack:
+    def __init__(self):
+        self._l = []
+
+    def push(self, data):
+        self._l.append(data)
+
+    def pop(self):
+        return self._l.pop()
+
+    def __len__(self):
+        return len(self._l)
+
+    def top(self):
+        if self._l:
+            return self._l[-1]
+        return None
+
 
 class Queue:
     def __init__(self):
-        self.s1 = []
-        self.s2 = []
+        self._head = Stack()
+        self._tail = Stack()
 
-    def enqueue(self, x):
-        self.s1.append(x)
+    def enqueue(self, data):
+        self._tail.push(data)
 
     def dequeue(self):
-        if len(self.s2) == 0:
-            if len(self.s1) == 0:
-                raise IndexError("empty queue")
-            while len(self.s1) > 0:
-                self.s2.append(self.s1.pop())
+        if self._head:
+            return self._head.pop()
 
-        return self.s2.pop()
+        return self._tail_to_head().pop()
 
-    def print(self):
-        print(self.s1[0])
+    def peek(self):
+        if self._head:
+            return self._head.top()
+
+        return self._tail_to_head().top()
+
+    def _tail_to_head(self):
+        while self._tail:
+            self._head.push(self._tail.pop())
+
+        return self._head
 
 
-n = int(input())
-queue = Queue()
-for i in range(n):
-    x = input().split()
-    if x[0] == "1":
-        queue.enqueue(x[1])
-    if x[0] == "2":
-        queue.dequeue()
-    if x[0] == "3":
-        queue.print()
+def main():
+
+    q = Queue()
+
+    n_commands = int(input().strip())
+    for _ in range(n_commands):
+        command, arg = read_command()
+        if command == ENQUEUE:
+            q.enqueue(arg)
+        elif command == DEQUEUE:
+            q.dequeue()
+        elif command == PRINT:
+            print(q.peek())
+
+
+if __name__ == "__main__":
+    main()
