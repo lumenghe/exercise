@@ -64,6 +64,7 @@ Simple test cases can be cleared with a purely recursive function exponentially.
 
 
 def fibonacci(n):
+    """0, 1, 1, 2, 3, 5, 8"""
     if n == 1:
         return 0
     if n == 2:
@@ -75,7 +76,7 @@ def fibonacci(n):
         b += a
         a = tmp
 
-    return b
+    return a
 
 
 if __name__ == "__main__":
