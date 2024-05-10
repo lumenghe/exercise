@@ -15,12 +15,12 @@ def merge_sort(mylist: list) -> list:
         while i < len(left) and j < len(right):
             if left[i] < right[j]:
                 mylist[k] = left[i]
-                k += 1
                 i += 1
             else:
                 mylist[k] = right[j]
-                k += 1
                 j += 1
+
+            k += 1
 
         while i < len(left):
             mylist[k] = left[i]
