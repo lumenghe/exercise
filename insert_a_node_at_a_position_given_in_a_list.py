@@ -1,13 +1,6 @@
 """
 Insert a node at a specific position in a linked list
-20 more points to get your first star!
-Rank: 3645034|Points: 10/30
-Problem Solving0
-Problem
-Submissions
-Leaderboard
-Discussions
-Editorial
+
 
 This challenge is part of a tutorial track by MyCodeSchool and is accompanied by a video lesson.
 
