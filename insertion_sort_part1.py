@@ -84,3 +84,50 @@ Next Challenge
 
 In the next Challenge, we will complete the insertion sort.
 """
+
+#!/bin/python3
+
+import functools
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'insertionSort1' function below.
+#
+# The function accepts following parameters:
+#  1. INTEGER n
+#  2. INTEGER_ARRAY arr
+#
+
+
+def print_list(arr: list) -> None:
+    print(functools.reduce(lambda x, y: str(x) + " " + str(y), arr))
+
+
+def insertionSort1(n, arr):
+    # Write your code here
+    target = arr[n - 1]
+    index = n - 2
+    for value in arr[-2::-1]:
+        if value > target:
+            arr[index + 1] = value
+            index -= 1
+            print_list(arr)
+        else:
+            arr[index + 1] = target
+            break
+
+    if arr[0] > target:
+        arr[0] = target
+    print_list(arr)
+
+
+if __name__ == "__main__":
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    insertionSort1(n, arr)
