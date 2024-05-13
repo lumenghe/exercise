@@ -53,3 +53,29 @@ def deepestLeavesSum(root: Optional[TreeNode]) -> int:
         if current.right is not None:
             q.append((current.right, max_level + 1))
     return ans
+
+
+class Solution:
+    def sum_and_level(self, node, level):
+        if node.left is None and node.right is None:
+            return node.val, level
+
+        if node.left and node.right is None:
+            left_sum, left_level = self.sum_and_level(node.left, level + 1)
+            return left_sum, left_level
+        if node.right and node.left is None:
+            right_sum, right_level = self.sum_and_level(node.right, level + 1)
+            return right_sum, right_level
+        left_sum, left_level = self.sum_and_level(node.left, level + 1)
+        right_sum, right_level = self.sum_and_level(node.right, level + 1)
+        if left_level == right_level:
+            return left_sum + right_sum, left_level
+        if left_level > right_level:
+            return left_sum, left_level
+        else:
+            return right_sum, right_level
+
+    def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
+
+        res, level = self.sum_and_level(root, 1)
+        return res
