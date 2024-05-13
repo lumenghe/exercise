@@ -93,6 +93,31 @@ def better_averageOfSubtree(root: TreeNode) -> int:
     return res
 
 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sum_and_number(self, node):
+        if node is None:
+            return 0, 0, 0
+        if node.left is None and node.right is None:
+            return node.val, 1, 1
+        left_sum, left_number, left_count = self.sum_and_number(node.left)
+        right_sum, right_number, right_count = self.sum_and_number(node.right)
+        new_sum = left_sum + right_sum + node.val
+        new_total = left_number + right_number + 1
+        if node.val == new_sum // new_total:
+            return new_sum, new_total, left_count + right_count + 1
+        return new_sum, new_total, left_count + right_count
+
+    def averageOfSubtree(self, root: TreeNode) -> int:
+        tmp_sum, tmp_number, count = self.sum_and_number(root)
+        return count
+
+
 if __name__ == "__main__":
     root = TreeNode(4)
     root.left = TreeNode(8)
