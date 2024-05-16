@@ -42,3 +42,42 @@ The nodes at level 1 were 1, 2, and are 2, 1 after the reversal.
 The nodes at level 3 were 1, 1, 1, 1, 2, 2, 2, 2, and are 2, 2, 2, 2, 1, 1, 1, 1 after the reversal.
 
 """
+
+from typing import Optional
+
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+class Solution:
+    def reverseOddLevels(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        self.tree = {}
+
+        def dfs(node, level):
+            if node is None:
+                return
+            dfs(node.left, level + 1)
+            self.tree.setdefault(level, [])
+            self.tree[level].append(node)
+            dfs(node.right, level + 1)
+
+        dfs(root, 0)
+        new_tree = {}
+        for level, values in self.tree.items():
+            if level % 2 == 1:
+                new_tree[level] = values[::-1]
+            else:
+                new_tree[level] = values
+        for level, values in new_tree.items():
+            if level + 1 in new_tree:
+                for index, node in enumerate(values):
+                    children = new_tree[level + 1]
+                    node.left = children[2 * index]
+                    node.right = children[2 * index + 1]
+
+        return new_tree[0][0]
