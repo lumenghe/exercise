@@ -56,3 +56,19 @@ def is_balanced(root: Optional[TreeNode]) -> bool:
     if abs(dfs_count(root.left) - dfs_count(root.right)) <= 1:
         return is_balanced(root.left) and is_balanced(root.right)
     return False
+
+
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        self.is_balanced = True
+
+        def get_depth(node):
+            if node is None:
+                return 0
+            left = get_depth(node.left)
+            right = get_depth(node.right)
+            self.is_balanced = (abs(left - right) <= 1) and self.is_balanced
+            return max(left, right) + 1
+
+        get_depth(root)
+        return self.is_balanced
