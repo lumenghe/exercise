@@ -66,12 +66,6 @@ class SolutionWrong:
         return self.max_result
 
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         return max(*self.path_rec(root))
@@ -103,3 +97,24 @@ class Solution:
         )
         print(root.val, t, b, left_t, left_b, right_t, right_b)
         return t, b
+
+
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        self.ans = root.val
+
+        def DFS(root):
+            if root == None:
+                return 0
+
+            lmax = DFS(root.left)
+            rmax = DFS(root.right)
+            lmax = max(0, lmax)
+            rmax = max(0, rmax)
+
+            self.ans = max(self.ans, root.val + lmax + rmax)
+
+            return root.val + max(lmax, rmax)
+
+        DFS(root)
+        return self.ans
