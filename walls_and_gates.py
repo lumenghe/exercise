@@ -29,33 +29,6 @@ After running your function, the 2D grid should be:
 
 from itertools import product
 
-
-def solutionWrong(grid):
-    """"""
-    print(grid)
-    m = len(grid)
-    n = len(grid[0])
-
-    def dfs(i, j, count, visited):
-        if 0 <= i < m and 0 <= j < n and (i, j) not in visited:
-            visited.append((i, j))
-            if grid[i][j] == 0:
-                return count
-            elif grid[i][j] > 0:
-                a = dfs(i - 1, j, count + 1, visited)
-                b = dfs(i, j - 1, count + 1, visited)
-                c = dfs(i + 1, j, count + 1, visited)
-                d = dfs(i, j + 1, count + 1, visited)
-                return min(a, b, c, d)
-        return -1
-
-    for i in range(m):
-        for j in range(n):
-            if grid[i][j] > 0:
-                grid[i][j] = dfs(i, j, 0, [])
-    return grid
-
-
 INF = 2**31 - 1
 grid = [
     [INF, -1, 0, INF],
