@@ -54,6 +54,18 @@ Complexity Analysis
 """
 
 
+class SolutionSlow:
+    def longestPalindrome(self, s: str) -> str:
+        if s == s[::-1]:
+            return s
+        left = self.longestPalindrome(s[1:])
+        right = self.longestPalindrome(s[:-1])
+        if len(left) > len(right):
+            return left
+
+        return right
+
+
 def longest_palindrome(s: str) -> str:
     if len(s) <= 1:
         return s
