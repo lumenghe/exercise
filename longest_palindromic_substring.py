@@ -86,6 +86,37 @@ class SolutionMiddle:
         return max_s.replace("#", "")
 
 
+class SolutionMiddle2:
+    def longestPalindrome(self, s: str) -> str:
+        if len(s) in [0, 1]:
+            return s
+
+        def subpalindrome(left, right, count):
+            max_s = ""
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                max_s = s[left : right + 1]
+                left -= 1
+                right += 1
+                count += 2
+            return max_s, count
+
+        max_s = ""
+        max_count = 0
+        for i in range(len(s)):
+            first_s, first_count = subpalindrome(i, i, -1)
+            second_s, second_count = subpalindrome(i, i + 1, 0)
+
+            if max_count < max(first_count, second_count):
+                if first_count < second_count:
+                    max_count = second_count
+                    max_s = second_s
+                else:
+                    max_count = first_count
+                    max_s = first_s
+
+        return max_s
+
+
 def longest_palindrome(s: str) -> str:
     if len(s) <= 1:
         return s
