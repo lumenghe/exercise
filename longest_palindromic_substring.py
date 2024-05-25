@@ -66,6 +66,26 @@ class SolutionSlow:
         return right
 
 
+class SolutionMiddle:
+    def longestPalindrome(self, s: str) -> str:
+        if len(s) in [0, 1]:
+            return s
+
+        max_s = s[0]
+        max_length = 0
+        s = "#" + "#".join(s) + "#"
+        dp = [0 for _ in range(len(s))]
+        for i in range(len(s)):
+            while i - dp[i] - 1 >= 0 and i + dp[i] + 1 < len(s) and s[i - dp[i] - 1] == s[i + dp[i] + 1]:
+                dp[i] += 1
+
+            if dp[i] > max_length:
+                max_length = dp[i]
+                max_s = s[i - dp[i] : i + dp[i]]
+
+        return max_s.replace("#", "")
+
+
 def longest_palindrome(s: str) -> str:
     if len(s) <= 1:
         return s
