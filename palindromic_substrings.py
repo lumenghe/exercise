@@ -34,3 +34,21 @@ Constraints:
     s consists of lowercase English letters.
 
 """
+
+
+class Solution:
+    def countSubstrings(self, s: str) -> int:
+        def palindromic(left, right):
+            count = 0
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                left -= 1
+                right += 1
+                count += 1
+            return count
+
+        total = 0
+        for i in range(len(s)):
+            total += palindromic(i, i)
+            total += palindromic(i, i + 1)
+
+        return total
