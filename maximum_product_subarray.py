@@ -33,3 +33,23 @@ Constraints:
     The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
 
 """
+
+from typing import List
+
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        cur_max, cur_min = 1, 1
+        res = nums[0]
+        for i in nums:
+            vals = (i, i * cur_max, i * cur_min)
+            print(vals)
+            cur_max, cur_min = max(vals), min(vals)
+            print(cur_max, cur_min, res)
+            res = max(res, cur_max)
+
+        return res
+
+
+s = Solution()
+print(s.maxProduct([0, -3, 2, -4]))
