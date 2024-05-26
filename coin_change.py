@@ -44,11 +44,9 @@ from typing import List
 
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        numCoins = len(coins)
 
         # Values in this array equal the number of coins needed to achieve the cost of the index
-        minCoins = [amount + 1] * (amount + 1)
-        minCoins[0] = 0
+        minCoins = [0] + [amount + 1] * (amount)
         print(minCoins)
         # Loop through every needed amount
         for i in range(amount + 1):
