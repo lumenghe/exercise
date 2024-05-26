@@ -40,3 +40,26 @@ Constraints:
     All the strings of wordDict are unique.
 
 """
+
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        def construct(current, word_dict, memo={}):
+            if current == "":
+                return True
+
+            if current in memo:
+                return memo[current]
+
+            for word in word_dict:
+                if current.startswith(word):
+                    new_current = current[len(word) :]
+                    if construct(new_current, word_dict, memo):
+                        memo[current] = True
+
+                        return True
+            print(memo)
+            memo[current] = False
+            return False
+
+        return construct(s, wordDict)
