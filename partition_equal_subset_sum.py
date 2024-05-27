@@ -31,6 +31,8 @@ Constraints:
 
 """
 
+from typing import List
+
 
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
@@ -44,3 +46,30 @@ class Solution:
             dp.update([v + num for v in dp if v + num <= s >> 1])
             print(dp)
         return s >> 1 in dp
+
+
+class Solution1:
+    def canPartition(self, nums: List[int]) -> bool:
+        dp, s = set([0]), sum(nums)
+        if s % 2 == 1:
+            return False
+        for num in nums:
+            dp.update([v + num for v in dp if v + num <= s // 2])
+        return s >> 1 in dp
+
+
+class Solution2:
+    def canPartition(self, nums: List[int]) -> bool:
+        s = sum(nums)
+        if s % 2 == 1:
+            return False
+
+        dp = set()
+        dp.add(0)
+        for i in nums:
+            tmp = dp.copy()
+            for v in tmp:
+                if v + i <= s // 2:
+                    dp.add(v + i)
+
+        return s // 2 in dp
