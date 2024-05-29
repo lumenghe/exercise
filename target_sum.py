@@ -40,3 +40,18 @@ Constraints:
     -1000 <= target <= 1000
 
 """
+
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        length = len(nums)
+        self.total_count = 0        
+        def dfs(pre_sum, level):
+            if level == length:
+                if pre_sum == target:
+                    self.total_count += 1
+                return
+                
+            dfs(pre_sum+nums[level], level+1)
+            dfs(pre_sum-nums[level], level+1)
+        dfs(0, 0)
+        return self.total_count
