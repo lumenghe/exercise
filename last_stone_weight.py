@@ -42,6 +42,8 @@ Constraints:
     1 <= stones[i] <= 1000
 
 """
+
+
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
 
@@ -52,22 +54,24 @@ class Solution:
                 return s1
             s2 = stones.pop()
             if s1 > s2:
-                stones.append(s1-s2)
+                stones.append(s1 - s2)
 
         return 0
-        
+
+
 import heapq
+
+
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
         stones = list(map(lambda x: -x, stones))
 
         heapq.heapify(stones)
         while stones:
-            s1 = - heapq.heappop(stones)
+            s1 = -heapq.heappop(stones)
             if not stones:
                 return s1
-            s2 = - heapq.heappop(stones)
+            s2 = -heapq.heappop(stones)
             if s1 > s2:
-                heapq.heappush(stones, s2-s1)
-        return 0        
-        
+                heapq.heappush(stones, s2 - s1)
+        return 0

@@ -37,3 +37,56 @@ Constraints:
     -104 <= xi, yi <= 104
 
 """
+
+import heapq
+from typing import List
+
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        def distance_power_2(point):
+            return (point[0]) ** 2 + (point[1]) ** 2
+
+        distance = {}
+        for point in points:
+            p_d = distance_power_2(point)
+            distance.setdefault(p_d, [])
+            distance[p_d].append(point)
+
+        ret = []
+        count = 0
+        new_order = dict(sorted(distance.items()))
+
+        for key, value in new_order.items():
+            if count + len(value) <= k:
+                count += len(value)
+                ret.extend(value)
+            else:
+                ret.extend(value[: k - count])
+                break
+
+        return ret
+
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        heap = []
+        for x, y in points:
+            dist = -(x**2 + y**2)
+
+            if len(heap) == k:
+                heapq.heappushpop(heap, (dist, x, y))
+            else:
+                heapq.heappush(heap, (dist, x, y))
+
+        return [(x, y) for (dist, x, y) in heap]
+
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        heap = []
+        for x, y in points:
+            dist = x**2 + y**2
+            heapq.heappush(heap, (dist, x, y))
+        top = heapq.nsmallest(k, heap)
+        return [(x, y) for (dist, x, y) in top]
