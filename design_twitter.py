@@ -44,7 +44,10 @@ Constraints:
     At most 3 * 104 calls will be made to postTweet, getNewsFeed, follow, and unfollow.
 
 """
+
 import time
+
+
 class Twitter:
 
     def __init__(self):
@@ -52,30 +55,28 @@ class Twitter:
 
     def postTweet(self, userId: int, tweetId: int) -> None:
         self.user_list.setdefault(userId, {"follow": set(), "tweet": []})
-        self.user_list[userId]["tweet"].append((time.time(),tweetId))
-        
+        self.user_list[userId]["tweet"].append((time.time(), tweetId))
+
     def getNewsFeed(self, userId: int) -> List[int]:
-        if  userId not in self.user_list:
+        if userId not in self.user_list:
             return []
         total_list = self.user_list[userId]["tweet"].copy()
- 
+
         for followeeId in self.user_list[userId]["follow"]:
             total_list.extend(self.user_list[followeeId]["tweet"])
- 
+
         ret = sorted(total_list)[::-1]
-     
+
         rett = []
         for time_i, i in ret:
             rett.append(i)
-            
-        return rett if len(rett)<=10 else rett[:10]
-        
+
+        return rett if len(rett) <= 10 else rett[:10]
 
     def follow(self, followerId: int, followeeId: int) -> None:
         self.user_list.setdefault(followerId, {"follow": set(), "tweet": []})
         self.user_list.setdefault(followeeId, {"follow": set(), "tweet": []})
         self.user_list[followerId]["follow"].add(followeeId)
-        
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
         if followerId not in self.user_list:
@@ -83,7 +84,6 @@ class Twitter:
         if followeeId not in self.user_list[followerId]["follow"]:
             return
         self.user_list[followerId]["follow"].remove(followeeId)
-        
 
 
 # Your Twitter object will be instantiated and called as such:

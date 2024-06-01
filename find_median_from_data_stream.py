@@ -49,3 +49,46 @@ Follow up:
     If 99% of all integer numbers from the stream are in the range [0, 100], how would you optimize your solution?
 
 """
+
+
+class MedianFinderSlow:
+
+    def __init__(self):
+        self.nums = []
+
+    def addNum(self, num: int) -> None:
+        self.nums.append(num)
+
+    def findMedian(self) -> float:
+        length = len(self.nums)
+        sorted_nums = sorted(self.nums)
+        if length % 2 == 1:
+            return sorted_nums[length // 2]
+        return sum(sorted_nums[length // 2 - 1 : length // 2 + 1]) / 2
+
+
+class MedianFinder:
+
+    def __init__(self):
+        self.lo = []
+        self.hi = []
+
+    def addNum(self, num: int) -> None:
+        heappush(self.lo, -num)
+        heappush(self.hi, -self.lo[0])
+        heappop(self.lo)
+        if len(self.lo) < len(self.hi):
+            heappush(self.lo, -self.hi[0])
+            heappop(self.hi)
+
+    def findMedian(self) -> float:
+        if len(self.lo) > len(self.hi):
+            return -self.lo[0]
+        else:
+            return (self.hi[0] - self.lo[0]) / 2
+
+
+# Your MedianFinder object will be instantiated and called as such:
+# obj = MedianFinder()
+# obj.addNum(num)
+# param_2 = obj.findMedian()
