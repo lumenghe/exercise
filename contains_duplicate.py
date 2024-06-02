@@ -32,3 +32,20 @@ Constraints:
     -109 <= nums[i] <= 109
 
 """
+
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+
+        return len(set(nums)) != len(nums)
+
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        a = set()
+        for num in nums:
+            if num not in a:
+                a.add(num)
+            else:
+                return True
+        return False
