@@ -45,3 +45,22 @@ Follow up:
     Can you do it without using any built-in function (i.e., like __builtin_popcount in C++)?
 
 """
+
+from typing import List
+
+
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        if n == 0:
+            return [0]
+        dp = [0] * (n + 1)
+        count_power_2 = 0
+        dp[1] = 1
+        for i in range(2, n + 1):
+            if i >= 2 ** (count_power_2 + 1):
+                count_power_2 += 1
+            # print(i, 2**count_power_2)
+            dp[i] = dp[i - 2**count_power_2] + 1
+            # print(dp)
+
+        return dp
