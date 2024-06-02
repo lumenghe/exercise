@@ -36,16 +36,17 @@ Constraints:
     Each element in the array appears twice except for one element which appears only once.
 
 """
+
+
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        a= {}
+        a = {}
         for num in nums:
             a.setdefault(num, 0)
-            a[num]+=1
-        
-        for key, value in a.items():
-            if value==1:
-                return key
+            a[num] += 1
 
+        for key, value in a.items():
+            if value == 1:
+                return key
 
         raise ValueError()
