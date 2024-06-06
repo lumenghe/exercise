@@ -36,3 +36,15 @@ Constraints:
 
 Follow up: Can you solve the problem in O(1) extra space complexity? (The output array does not count as extra space for space complexity analysis.)
 """
+
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        length = len(nums)
+        from_first = [1] * length
+        from_last = [1] * length
+        for i in range(1, length):
+            from_first[i] = from_first[i - 1] * nums[i - 1]
+        for j in range(length - 2, -1, -1):
+            from_last[j] = from_last[j + 1] * nums[j + 1]
+        return [from_first[i] * from_last[i] for i in range(length)]
