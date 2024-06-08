@@ -32,3 +32,19 @@ Constraints:
     All the numbers of nums are unique.
 
 """
+
+from typing import List
+
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        n = len(nums)
+
+        def backtrack(start, path):
+            result.append(path)
+            for i in range(start, len(nums)):
+                backtrack(i + 1, [nums[i]] + path)
+
+        backtrack(0, [])
+        return result
