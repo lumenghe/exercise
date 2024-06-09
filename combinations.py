@@ -89,3 +89,29 @@ class Solution:
 
         backtrack(k, [], 1)
         return sol
+
+
+from collections import Counter
+
+
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        used = []
+        res = []
+        candidates = sorted(candidates)
+
+        def dfs(idx, path, cur):
+            if cur > target:
+                return
+            if cur == target:
+                if Counter(path) not in used:
+                    used.append(Counter(path))
+                    res.append(path)
+                return
+            for i in range(idx, len(candidates)):
+
+                if i == idx or candidates[i] != candidates[i - 1]:
+                    dfs(i + 1, path + [candidates[i]], cur + candidates[i])
+
+        dfs(0, [], 0)
+        return res
