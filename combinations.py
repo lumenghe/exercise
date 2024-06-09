@@ -31,3 +31,61 @@ Constraints:
     1 <= k <= n
 
 """
+
+from typing import List
+
+
+class SolutionSlow:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        def dfs(path, res):
+            if len(path) == k:
+                if set(path) not in res:
+                    res.append(set(path))
+                return
+
+            for i in range(0, n):
+                if not used[i]:
+                    used[i] = True
+                    dfs(path + [i + 1], res)
+                    used[i] = False
+
+        used = [False] * n
+        res = []
+        dfs([], res)
+        return res
+
+
+class SolutionSlow:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        res = []
+
+        def dfs(path):
+            if len(path) == k and set(path) not in res:
+                res.append(set(path))
+
+            for i in range(1, n + 1):
+                if i not in path:
+                    path.append(i)
+                    dfs(path)
+                    path.remove(i)
+
+        dfs([])
+        return res
+
+
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        sol = []
+
+        def backtrack(remain, comb, nextt):
+            if remain == 0:
+                sol.append(comb[:])
+                return
+
+            for i in range(nextt, n + 1):
+                comb.append(i)
+                backtrack(remain - 1, comb, i + 1)
+                comb.pop()
+
+        backtrack(k, [], 1)
+        return sol
