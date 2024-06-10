@@ -26,6 +26,8 @@ Constraints:
 
 """
 
+from typing import List
+
 
 def generate_parenthese(n: int) -> list[str]:
     n -= 1
@@ -39,3 +41,23 @@ def generate_parenthese(n: int) -> list[str]:
         result = new_result
         n -= 1
     return result
+
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        ret = []
+
+        def dfs(first, last, s):
+            if len(s) == 2 * n:
+                ret.append(s)
+            if first < n:
+                dfs(first + 1, last, s + "(")
+            if last < first:
+                dfs(first, last + 1, s + ")")
+
+        dfs(0, 0, "")
+        return ret
+
+
+sol = Solution()
+print(sol.generateParenthesis(4))
