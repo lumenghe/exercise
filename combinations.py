@@ -115,3 +115,23 @@ class Solution:
 
         dfs(0, [], 0)
         return res
+
+
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        candidates = sorted(candidates)
+
+        def dfs(idx, path, cur):
+            if cur > target:
+                return
+            if cur == target:
+                if path not in res:
+                    res.append(path)
+            for i in range(idx, len(candidates)):
+                if candidates[i] == candidates[i - 1] and i > idx:
+                    continue
+                dfs(i + 1, path + [candidates[i]], cur + candidates[i])
+
+        dfs(0, [], 0)
+        return res
