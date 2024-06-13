@@ -66,3 +66,36 @@ class Solution:
             return result
 
         return sub_string(digits)
+
+
+from typing import List
+
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        self.phone_map = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz",
+        }
+
+        def dfs(digits):
+            if len(digits) == 0:
+                return []
+            if len(digits) == 1:
+                return [i for i in self.phone_map[digits[0]]]
+
+            last = digits[-1]
+            sub_dfs = dfs(digits[:-1])
+            ret = []
+            for digit in self.phone_map[last]:
+                for sub_sub_dfs in sub_dfs:
+                    ret.append(sub_sub_dfs + digit)
+            return ret
+
+        return dfs(digits)
