@@ -156,19 +156,36 @@ class Solution:
 
 class SolutionSlow:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        index = len(nums) - 1
-        curr_sum = 0
-        return self.dp(nums, target, index, curr_sum)
+        def dp(nums, index, current_sum):
+            if index < 0:
+                if current_sum == target:
+                    return 1
+                else:
+                    return 0
 
-    def dp(self, nums, target, index, curr_sum):
-        # Base Cases
-        if index < 0 and curr_sum == target:
-            return 1
-        if index < 0:
-            return 0
+            positive = dp(nums, index - 1, current_sum + nums[index])
+            negative = dp(nums, index - 1, current_sum - nums[index])
+            return positive + negative
 
-            # Decisions
-        positive = self.dp(nums, target, index - 1, curr_sum + nums[index])
-        negative = self.dp(nums, target, index - 1, curr_sum + -nums[index])
+        return dp(nums, len(nums) - 1, 0)
 
-        return positive + negative
+
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        def dp(nums, index, current_sum):
+            if (index, current_sum) in self.storeresult:
+                return self.storeresult[(index, current_sum)]
+            if index < 0:
+                if current_sum == target:
+                    return 1
+                else:
+                    return 0
+
+            positive = dp(nums, index - 1, current_sum + nums[index])
+            negative = dp(nums, index - 1, current_sum - nums[index])
+            self.storeresult[(index, current_sum)] = positive + negative
+            return positive + negative
+
+        self.storeresult = {}
+
+        return dp(nums, len(nums) - 1, 0)
