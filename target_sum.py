@@ -152,3 +152,23 @@ class Solution:
             print(dp)
         # Return the dp value for the target sum.
         return dp[new_target]
+
+
+class SolutionSlow:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        index = len(nums) - 1
+        curr_sum = 0
+        return self.dp(nums, target, index, curr_sum)
+
+    def dp(self, nums, target, index, curr_sum):
+        # Base Cases
+        if index < 0 and curr_sum == target:
+            return 1
+        if index < 0:
+            return 0
+
+            # Decisions
+        positive = self.dp(nums, target, index - 1, curr_sum + nums[index])
+        negative = self.dp(nums, target, index - 1, curr_sum + -nums[index])
+
+        return positive + negative
