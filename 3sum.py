@@ -60,7 +60,7 @@ class Solution:
         self.ret = []
         if len(zero) >= 3:
             self.ret.append((0, 0, 0))
-        if 0 < len(zero) < 3:
+        if len(zero) > 0:
             for num in positive:
                 if -num in negative:
                     if (-num, 0, num) not in self.ret:
