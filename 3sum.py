@@ -57,22 +57,21 @@ class Solution:
             else:
                 zero.append(num)
 
-        self.ret = []
+        self.ret = set()
         if len(zero) >= 3:
-            self.ret.append((0, 0, 0))
+            self.ret.add((0, 0, 0))
         if len(zero) > 0:
-            for num in positive:
-                if -num in negative:
-                    if (-num, 0, num) not in self.ret:
-                        self.ret.append((-num, 0, num))
+            for num in set(positive):
+                if -num in set(negative):
+                    self.ret.add((-num, 0, num))
 
         def search(list1, list2):
             for i in range(len(list1)):
                 for j in range(i + 1, len(list1)):
-                    if -(list1[i] + list1[j]) in list2:
-                        temp = list(sorted((list1[i], list1[j], -(list1[i] + list1[j]))))
-                        if temp not in self.ret:
-                            self.ret.append(temp)
+                    target = -(list1[i] + list1[j])
+                    if target in set(list2):
+                        temp = tuple(sorted([list1[i], list1[j], target]))
+                        self.ret.add(temp)
 
         search(positive, negative)
         search(negative, positive)
