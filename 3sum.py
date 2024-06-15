@@ -42,3 +42,34 @@ Constraints:
     -105 <= nums[i] <= 105
 
 """
+
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        positive, negative, zero = [], [], []
+        for num in nums:
+            if num > 0:
+                positive.append(num)
+            elif num < 0:
+                negative.append(num)
+            else:
+                zero.append(num)
+
+        self.ret = []
+        if len(zero) >= 3:
+            self.ret.append((0, 0, 0))
+        if 0 < len(zero) < 3:
+            for num in positive:
+                if -num in negative:
+                    self.ret.append((0, num, -num))
+        print(self.ret)
+
+        def search(list1, list2):
+            for i in range(len(list1)):
+                for j in range(i + 1, len(list1)):
+                    if -(list1[i] + list1[j]) in list2:
+                        self.ret.append((list1[i], list1[j], -(list1[i] + list1[j])))
+
+        search(positive, negative)
+        search(negative, positive)
+        return self.ret
