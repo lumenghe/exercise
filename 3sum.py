@@ -43,6 +43,8 @@ Constraints:
 
 """
 
+from typing import List
+
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
@@ -61,15 +63,21 @@ class Solution:
         if 0 < len(zero) < 3:
             for num in positive:
                 if -num in negative:
-                    self.ret.append((0, num, -num))
-        print(self.ret)
+                    if (0, num, -num) not in self.ret:
+                        self.ret.append((0, num, -num))
 
         def search(list1, list2):
             for i in range(len(list1)):
                 for j in range(i + 1, len(list1)):
                     if -(list1[i] + list1[j]) in list2:
-                        self.ret.append((list1[i], list1[j], -(list1[i] + list1[j])))
+                        if (list1[i], list1[j], -(list1[i] + list1[j])) not in self.ret:
+                            self.ret.append((list1[i], list1[j], -(list1[i] + list1[j])))
 
         search(positive, negative)
         search(negative, positive)
         return self.ret
+
+
+s = Solution()
+nums = [-2, 0, 0, 2, 2]
+print(s.threeSum(nums))
