@@ -64,3 +64,30 @@ def is_valid_bst(root: Optional[TreeNode]) -> bool:
         return True
 
     return calculate(root, float("-inf"), float("inf"))
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        self.prev = float("-inf")
+
+        def dfs(node):
+            if node is None:
+                return True
+
+            if dfs(node.left) is False:
+                return False
+
+            if self.prev >= node.val:
+                return False
+            self.prev = node.val
+
+            return dfs(node.right)
+
+        return dfs(root)
