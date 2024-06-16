@@ -31,3 +31,32 @@ Constraints:
     -100 <= Node.val <= 100
 
 """
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class SolutionWrong:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        self.ret = {}
+
+        def zigzag(level, node):
+            if node is None:
+                return
+
+            self.ret.setdefault(level, [])
+            self.ret[level].append(node.val)
+            if level % 2:
+                zigzag(level + 1, node.left)
+                zigzag(level + 1, node.right)
+            else:
+                zigzag(level + 1, node.right)
+                zigzag(level + 1, node.left)
+
+        zigzag(0, root)
+
+        print(self.ret)
+        return self.ret.values()
