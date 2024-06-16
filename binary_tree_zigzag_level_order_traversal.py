@@ -60,3 +60,30 @@ class SolutionWrong:
 
         print(self.ret)
         return self.ret.values()
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        self.ret = {}
+
+        def dfs(level, node):
+            if node is None:
+                return
+
+            self.ret.setdefault(level, [])
+            self.ret[level].append(node.val)
+
+            dfs(level + 1, node.left)
+            dfs(level + 1, node.right)
+
+        dfs(0, root)
+        for level, value in self.ret.items():
+            if level % 2:
+                self.ret[level] = value[::-1]
+        return self.ret.values()
