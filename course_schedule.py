@@ -34,6 +34,7 @@ Constraints:
 """
 
 from collections import deque
+from typing import List
 
 
 class Solution:
@@ -61,5 +62,31 @@ class Solution:
                 indegree[next_course] -= 1
                 if indegree[next_course] == 0:
                     queue.append(next_course)
+
+        return len(ans) == numCourses
+
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        graphs = [[] for _ in range(numCourses)]
+        a = [0] * numCourses
+
+        for des, source in prerequisites:
+            graphs[source].append(des)
+            a[des] += 1
+
+        queue = []
+        for i in range(numCourses):
+            if a[i] == 0:
+                queue.append(i)
+        ans = []
+        while queue:
+            current = queue.pop(0)
+            ans.append(current)
+
+            for next_node in graphs[current]:
+                a[next_node] -= 1
+                if a[next_node] == 0:
+                    queue.append(next_node)
 
         return len(ans) == numCourses
