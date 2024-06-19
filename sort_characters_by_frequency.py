@@ -40,3 +40,14 @@ Constraints:
     s consists of uppercase and lowercase English letters and digits.
 
 """
+
+from collections import Counter
+
+
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        c = Counter(s)
+        ret = ""
+        for key, value in c.most_common():
+            ret += key * value
+        return ret
