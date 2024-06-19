@@ -48,6 +48,18 @@ class Solution:
     def frequencySort(self, s: str) -> str:
         c = Counter(s)
         ret = ""
+        pq = [(-freq, char) for char, freq in c.items()]
+        heapq.heapify(pq)
+        while pq:
+            freq, char = heapq.heappop(pq)
+            ret += char * (-freq)
+        return ret
+
+
+class SolutionFaster:
+    def frequencySort(self, s: str) -> str:
+        c = Counter(s)
+        ret = ""
         for key, value in c.most_common():
             ret += key * value
         return ret
