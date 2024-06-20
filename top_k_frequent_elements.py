@@ -32,3 +32,16 @@ Constraints:
 
 Follow up: Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
 """
+
+from collections import Counter
+
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        c = Counter(nums)
+        ret = []
+        for value, nb in c.most_common():
+            if len(ret) < k:
+                ret.append(value)
+
+        return ret
