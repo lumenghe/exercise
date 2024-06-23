@@ -38,25 +38,21 @@ Constraints:
     s consists of English letters, digits, symbols and spaces.
 
 """
-class SolutionWrong:
+
+
+class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-
-        def largestlength(s, word):
-            max_length = 0
-            tmp = 0
-            for l in s:
-                if l!=word:
-                    tmp += 1
+        seen = {}
+        l = 0
+        output = 0
+        for r, letter in enumerate(s):
+            if letter in seen:
+                if l > seen[letter]:
+                    output = max(output, r - l + 1)
                 else:
-                    max_length = max(max_length, tmp+1)
-                    tmp = 0
-            return max_length
-        ret = 0
-        for letter in set(s):
-            print(letter, largestlength(s, letter))
-            ret = max(largestlength(s, letter), ret)
+                    l = seen[letter] + 1
+            else:
+                output = max(output, r - l + 1)
+            seen[letter] = r
 
-        return ret
-
-
-        
+        return output
