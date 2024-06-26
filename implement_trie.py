@@ -75,32 +75,28 @@ class Trie:
         self.root = {}
 
     def insert(self, word: str) -> None:
-        cur = self.root
-
+        current = self.root
         for letter in word:
-            if letter not in cur:
-                cur[letter] = {}
-            cur = cur[letter]
-
-        cur["*"] = ""
-        print(self.root)
+            if letter not in current:
+                current[letter] = {}
+            current = current[letter]
+        current["*"] = ""
 
     def search(self, word: str) -> bool:
-        cur = self.root
+        current = self.root
         for letter in word:
-            if letter not in cur:
+            if letter not in current:
                 return False
-            cur = cur[letter]
-
-        return "*" in cur
+            current = current[letter]
+        return "*" in current
 
     def startsWith(self, prefix: str) -> bool:
-        cur = self.root
+        current = self.root
         for letter in prefix:
-            if letter not in cur:
-                return False
-            cur = cur[letter]
+            if letter not in current:
 
+                return False
+            current = current[letter]
         return True
 
 
