@@ -75,18 +75,16 @@ def is_valid_bst(root: Optional[TreeNode]) -> bool:
 class Solution:
 
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        self.prev = float("-inf")
+        self.current = float("-inf")
 
         def dfs(node):
             if node is None:
                 return True
-
             if dfs(node.left) is False:
                 return False
-
-            if self.prev >= node.val:
+            if self.current > node.val:
                 return False
-            self.prev = node.val
+            self.current = node.val
 
             return dfs(node.right)
 
