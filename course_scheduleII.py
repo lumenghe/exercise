@@ -92,7 +92,6 @@ class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         # Create a prerequisite dict. (containing courses (nodes) that need to be taken (visited)
         # before we can visit the key.
-        graph = {}
         visited = []
         pre_graph = {i: set() for i in range(numCourses)}
         graph = collections.defaultdict(set)
