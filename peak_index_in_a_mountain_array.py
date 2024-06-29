@@ -52,5 +52,5 @@ class Solution:
                 first = mid + 1
             else:
                 last = mid
-        # return first or return last
+        # return first or return last, at last, first=last
         return last
