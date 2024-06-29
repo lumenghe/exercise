@@ -86,3 +86,37 @@ class Solution:
                     q.append(cor)
             # If we didn't hit numCourses in our search we know we can't take all of the courses.
         return []
+
+
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        # Create a prerequisite dict. (containing courses (nodes) that need to be taken (visited)
+        # before we can visit the key.
+        graph = {}
+        visited = []
+        pre_graph = {i: set() for i in range(numCourses)}
+        graph = collections.defaultdict(set)
+
+        for dest, source in prerequisites:
+            # graph.setdefault(source, set())
+            graph[source].add(dest)
+            pre_graph[dest].add(source)
+
+        queue = []
+        for dest, source in pre_graph.items():
+            if len(source) == 0:
+                queue.append(dest)
+
+        while queue:
+            current = queue.pop(0)
+
+            visited.append(current)
+            if len(visited) == numCourses:
+                return visited
+
+            for nextt in graph[current]:
+                pre_graph[nextt].remove(current)
+                if not pre_graph[nextt]:
+                    queue.append(nextt)
+
+        return []
