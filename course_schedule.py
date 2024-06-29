@@ -95,7 +95,7 @@ class Solution:
 import collections
 
 
-class SolutionWrong:
+class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         graph = collections.defaultdict(set)
         pre_graph = {i: set() for i in range(numCourses)}
@@ -109,14 +109,15 @@ class SolutionWrong:
             if len(source) == 0:
                 queue.append(dest)
 
-        visited = set()
+        visited = []
         while queue:
             current = queue.pop(0)
-            visited.add(current)
+            visited.append(current)
             if len(visited) == numCourses:
                 return True
             for nextt in graph[current]:
                 pre_graph[nextt].remove(current)
-                queue.append(nextt)
+                if not pre_graph[nextt]:
+                    queue.append(nextt)
 
         return False
