@@ -40,6 +40,8 @@ Follow up: This problem is similar to Search in Rotated Sorted Array, but nums m
 """
 
 from typing import List
+
+
 class SolutionWrong:
     def search(self, nums: List[int], target: int) -> bool:
         left = 0
