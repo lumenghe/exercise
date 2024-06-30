@@ -36,20 +36,37 @@ Constraints:
     nums[i] != nums[i + 1] for all valid i.
 
 """
-class Solution:
+
+
+class SolutionSlow:
     def findPeakElement(self, nums: List[int]) -> int:
         ret = []
         if len(nums) == 1:
             return 0
         for i in range(len(nums)):
-            if i==0:
+            if i == 0:
                 if nums[0] > nums[1]:
                     ret.append(0)
-            elif i==len(nums)-1:
-                if nums[i]> nums[i-1]:
+            elif i == len(nums) - 1:
+                if nums[i] > nums[i - 1]:
                     ret.append(i)
             else:
-                if nums[i-1] < nums[i] and nums[i] > nums[i+1]:
+                if nums[i - 1] < nums[i] and nums[i] > nums[i + 1]:
                     ret.append(i)
-        
+
         return ret[0]
+
+
+class SolutionFast:
+    def findPeakElement(self, nums: List[int]) -> int:
+        current = 0
+        left = 0
+        right = len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[mid + 1]:
+                right = mid
+            else:
+                left = mid + 1
+
+        return left
