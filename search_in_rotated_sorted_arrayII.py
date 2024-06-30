@@ -38,3 +38,25 @@ Constraints:
 
 Follow up: This problem is similar to Search in Rotated Sorted Array, but nums may contain duplicates. Would this affect the runtime complexity? How and why?
 """
+class Solution:
+    def search(self, nums: List[int], target: int) -> bool:
+        left = 0
+        right = len(nums)-1
+
+        while left <= right:
+            mid = (left+ right)//2
+            if nums[mid]==target:
+                return True
+            if nums[left] <= nums[mid]:
+                if nums[left] <= target < nums[mid]:
+                    right = mid
+                else:
+                    left = mid
+            else:
+                if nums[mid] <= target <= nums[right]:
+                    left = mid
+                else:
+                    right=mid
+
+            return False
+
