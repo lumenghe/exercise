@@ -39,8 +39,8 @@ Constraints:
 Follow up: This problem is similar to Search in Rotated Sorted Array, but nums may contain duplicates. Would this affect the runtime complexity? How and why?
 """
 
-
-class Solution:
+from typing import List
+class SolutionWrong:
     def search(self, nums: List[int], target: int) -> bool:
         left = 0
         right = len(nums) - 1
