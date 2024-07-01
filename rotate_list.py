@@ -34,8 +34,10 @@ Constraints:
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class SolutionWrong:
+class Solution:
     def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if head is None:
+            return None
         length = 0
         current = head
         while current:
@@ -43,15 +45,18 @@ class SolutionWrong:
             length += 1
 
         current = head
-        index = 0
-        print(length, k)
-        while current:
-            index += 1
+        index = 1
+        k = k % length
+        while current.next:
             if index == (length - k):
                 break
+
+            index += 1
             current = current.next
 
         new_head = current.next
+        if new_head is None:
+            return head
         current.next = None
         new_current = new_head
 
