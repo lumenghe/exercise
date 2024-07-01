@@ -27,3 +27,36 @@ Constraints:
     0 <= k <= 2 * 109
 
 """
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class SolutionWrong:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        length = 0
+        current = head
+        while current:
+            current = current.next
+            length += 1
+
+        current = head
+        index = 0
+        print(length, k)
+        while current:
+            index += 1
+            if index == (length-k):
+                break            
+            current = current.next
+
+        new_head = current.next
+        current.next = None
+        new_current= new_head
+
+        while new_current.next:
+            new_current = new_current.next
+
+        new_current.next = head
+
+
+        return new_head
