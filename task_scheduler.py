@@ -70,31 +70,21 @@ class Solution1:
         return len(tasks) + idle if idle >= 0 else len(tasks)
 
 
-class SolutionWrong:
+class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         task_counter = Counter(tasks)
         idle_nb = 0
         rest = 0
+        first = True
         for c, v in task_counter.most_common():
-            if idle_nb == 0:
+            if first:
                 idle_nb = n * (v - 1)
                 most_common = v
+                first = False
             else:
+                idle_nb -= min(v, most_common - 1)
 
-                rest += v
-        print(idle_nb, rest)
-        return len(tasks) if idle_nb < rest else most_common + idle_nb
-
-
-from collections import Counter
-
-
-class Solution:
-    def leastInterval(self, tasks: List[str], n: int) -> int:
-        task_counter = Counter(tasks)
-        print(task_counter)
-        c = task_counter.most_common(1)[0]
-        print(c)
+        return len(tasks) if idle_nb < 0 else len(tasks) + idle_nb
 
 
 s = Solution()
