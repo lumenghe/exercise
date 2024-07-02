@@ -50,9 +50,9 @@ Constraints:
     0 <= n <= 100
 
 """
+from typing import List
 
-
-class Solution:
+class Solution1:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         freq = [0] * 26
         for task in tasks:
@@ -61,7 +61,43 @@ class Solution:
         freq.sort()
         chunk = freq[25] - 1
         idle = chunk * n
+        print(idle)
         for i in range(24, -1, -1):
             idle -= min(chunk, freq[i])
 
         return len(tasks) + idle if idle >= 0 else len(tasks)
+        
+class SolutionWrong:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        task_counter = Counter(tasks)
+        idle_nb = 0
+        rest = 0
+        for c, v in task_counter.most_common():
+            if idle_nb == 0:
+                idle_nb = n * (v-1)
+                most_common = v
+            else:
+
+                rest += v
+        print(idle_nb, rest)
+        return len(tasks) if idle_nb < rest else most_common+idle_nb
+        
+
+
+        
+        
+from collections import Counter
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        task_counter = Counter(tasks)
+        print(task_counter)
+        c = task_counter.most_common(1)[0]
+        print(c)
+        
+s= Solution()
+tasks=["A","A","A","B","B","B"]
+res = s.leastInterval(tasks=tasks, n=2)
+
+
+
+
