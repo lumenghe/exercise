@@ -31,12 +31,16 @@ Constraints:
     0 <= Node.val <= 100
 
 """
+
 from typing import Optional
+
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
 
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
@@ -52,8 +56,8 @@ class Solution:
             prev, current = current, current.next
 
         return ans or head
-        
-        
+
+
 s = Solution()
 head = ListNode(val=1, next=ListNode(val=2, next=ListNode(val=3, next=ListNode(val=4))))
 current = s.swapPairs(head)
@@ -61,6 +65,5 @@ s = ""
 while current:
     s += f" {current.val}"
     current = current.next
-    
+
 print(s)
-        
