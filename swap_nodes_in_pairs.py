@@ -31,6 +31,7 @@ Constraints:
     0 <= Node.val <= 100
 
 """
+from typing import Optional
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -46,13 +47,11 @@ class Solution:
         current= prev.next
         new_head = head.next
         while current:
-            print(current.val)
             nextt = current.next
             current.next = prev
             prev.next = nextt
-            print(prev.val)
             prev = nextt
-            if prev:
+            if nextt:
                 current = prev.next
             else:
                 break
