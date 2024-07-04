@@ -31,3 +31,32 @@ Constraints:
     0 <= Node.val <= 100
 
 """
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None:
+            return None
+        if head.next is None:
+            return head
+        prev = head
+        current= prev.next
+        new_head = head.next
+        while current:
+            print(current.val)
+            nextt = current.next
+            current.next = prev
+            prev.next = nextt
+            print(prev.val)
+            prev = nextt
+            if prev:
+                current = prev.next
+            else:
+                break
+
+        return new_head
+
+        
