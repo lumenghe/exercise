@@ -32,10 +32,10 @@ Constraints:
 
 """
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if head is None:
@@ -59,4 +59,13 @@ class Solution:
 
         return new_head
 
+s = Solution()
+head = ListNode(val=1, next=ListNode(val=2, next=ListNode(val=3, next=ListNode(val=4))))
+current = s.swapPairs(head)
+s = ""
+while current:
+    s += f" {current.val}"
+    current = current.next
+    
+print(s)
         
