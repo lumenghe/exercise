@@ -75,20 +75,21 @@ class SolutionSlow:
 
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        sol = []
+        res = []
+        current = []
 
-        def backtrack(remain, comb, nextt):
-            if remain == 0:
-                sol.append(comb[:])
+        def backtrack(start):
+            if len(current) == k:
+                res.append(current[:])
                 return
 
-            for i in range(nextt, n + 1):
-                comb.append(i)
-                backtrack(remain - 1, comb, i + 1)
-                comb.pop()
+            for num in range(start, n + 1):
+                current.append(num)
+                backtrack(num + 1)
+                current.pop()
 
-        backtrack(k, [], 1)
-        return sol
+        backtrack(1)
+        return res
 
 
 from collections import Counter
