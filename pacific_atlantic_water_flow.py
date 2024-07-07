@@ -114,3 +114,36 @@ class Solution2:
         print(a_visited)
 
         return list(p_visited & a_visited)
+
+
+class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        m = len(heights)
+        n = len(heights[0])
+        alt = []
+        pac = []
+        ret = []
+
+        def dfs(r, c, prevheight, visited):
+            if r in [-1, m] or c in [-1, n] or (r, c) in visited or heights[r][c] < prevheight:
+                return
+            visited.append((r, c))
+            dfs(r + 1, c, heights[r][c], visited)
+            dfs(r - 1, c, heights[r][c], visited)
+            dfs(r, c - 1, heights[r][c], visited)
+            dfs(r, c + 1, heights[r][c], visited)
+
+        for i in range(m):
+            dfs(i, 0, heights[i][0], pac)
+            dfs(i, n - 1, heights[i][n - 1], alt)
+
+        for j in range(n):
+            dfs(0, j, heights[0][j], pac)
+            dfs(m - 1, j, heights[m - 1][j], alt)
+
+        for i in range(m):
+            for j in range(n):
+                if (i, j) in alt and (i, j) in pac:
+                    ret.append((i, j))
+
+        return ret
