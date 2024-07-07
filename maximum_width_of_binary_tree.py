@@ -40,3 +40,30 @@ Constraints:
     -100 <= Node.val <= 100
 
 """
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        graph = collections.defaultdict(list)
+        def dfs(node, level, column):
+            if node is None:
+                return
+            graph[level].append(column)
+            dfs(node.left, level+1, column*2)
+            dfs(node.right, level+1, column*2+1)
+
+        dfs(root, 0, 0)
+
+        ret = 0
+
+        for level,values in graph.items():
+            ret = max(ret, values[-1] - values[0] + 1)
+
+        return ret
+
+            
