@@ -84,6 +84,55 @@ def make_linked_list(list1: list):
     return head.next
 
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        current1 = l1
+        current2 = l2
+        new_head = ListNode()
+        prev = new_head
+        flag = 0
+
+        while current1 and current2:
+            current_sum = current1.val + current2.val + flag
+            flag = 0
+            if current_sum >= 10:
+                current_sum %= 10
+                flag = 1
+            prev.next = ListNode(current_sum)
+            prev = prev.next
+            current1 = current1.next
+            current2 = current2.next
+
+        while current1:
+            current_sum = current1.val + flag
+            flag = 0
+            if current_sum >= 10:
+                current_sum %= 10
+                flag = 1
+            prev.next = ListNode(current_sum)
+            prev = prev.next
+            current1 = current1.next
+
+        while current2:
+            current_sum = current2.val + flag
+            flag = 0
+            if current_sum >= 10:
+                current_sum %= 10
+                flag = 1
+            prev.next = ListNode(current_sum)
+            prev = prev.next
+            current2 = current2.next
+
+        if flag:
+            prev.next = ListNode(1)
+        return new_head.next
+
+
 if __name__ == "__main__":
     list1 = [2, 4, 3]
     list1 = make_linked_list(list1)
