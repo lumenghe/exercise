@@ -31,6 +31,8 @@ Constraints:
     0 <= nums[i] <= 105
 
 """
+
+
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
         gas = 0
@@ -40,5 +42,5 @@ class Solution:
             elif n > gas:
                 gas = n
             gas -= 1
-            
+
         return True
