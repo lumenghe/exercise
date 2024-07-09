@@ -71,3 +71,24 @@ class Solution:
                 dp[i] += dp[i - 2]
 
         return dp[n]
+        
+        
+class SolutionWrong:
+    def numDecodings(self, s: str) -> int:
+        if s=="" or s[0] == "0":
+            return 0
+        dp = [0 for _ in range(len(s)+1)]
+        dp[0] = 1
+        dp[1] = 1
+        for index in range(2, len(s)+1):
+
+            if 10<=int(s[index-2: index-1]) <= 26:
+                dp[index] += dp[index-2]
+            if s[index-1] != "0":
+                dp[index] += dp[index-1]
+
+        return dp[len(s)]
+
+
+
+        
