@@ -49,3 +49,32 @@ class Solution:
         count /= product
 
         return int(count)
+        
+        
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        a = (m-1) + (n-1)
+        b = (m-1)
+        def productpart(start, count):
+            ret = 1
+            current = start
+            while current > (start-count):
+                ret *= current
+                current -= 1
+            return ret
+
+        def productpart2(number):
+            current = number
+            ret = 1
+            while current > 0:
+                ret *= current
+                current -= 1
+
+            return ret
+
+        
+
+
+        return productpart(a) / productpart2(b)
+        
+        
