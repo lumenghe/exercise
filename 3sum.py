@@ -188,6 +188,7 @@ class SolutionFasterthanSlow:
 
         return self.ret
 
+
 s = Solution()
 nums = [-4, -2, 1, -5, -4, -4, 4, -2, 0, 4, 0, -2, 3, 1, -5, 0]
 ret = s.threeSum(nums)
