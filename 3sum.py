@@ -157,6 +157,37 @@ class SolutionSlow:
         return self.ret
 
 
+class SolutionFasterthanSlow:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        positive, negative, zeros, self.ret = [], [], [], set()
+
+        for num in nums:
+            if num > 0:
+                positive.append(num)
+            elif num < 0:
+                negative.append(num)
+            else:
+                zeros.append(num)
+        N, P = set(negative), set(positive)
+        if len(zeros) >= 3:
+            self.ret.add((0, 0, 0))
+        if zeros:
+            for num in P:
+                if -1 * num in N:
+                    self.ret.add((-1 * num, 0, num))
+
+        def checktriplets(mylist1, mysetlist):
+            for i in range(len(mylist1)):
+                for j in range(i + 1, len(mylist1)):
+                    target = -1 * (mylist1[i] + mylist1[j])
+                    if target in mysetlist:
+                        self.ret.add(tuple(sorted([mylist1[i], mylist1[j], target])))
+
+        checktriplets(positive, N)
+        checktriplets(negative, P)
+
+        return self.ret
+
 s = Solution()
 nums = [-4, -2, 1, -5, -4, -4, 4, -2, 0, 4, 0, -2, 3, 1, -5, 0]
 ret = s.threeSum(nums)
