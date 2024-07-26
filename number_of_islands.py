@@ -46,22 +46,23 @@ class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         self.m = len(grid)
         self.n = len(grid[0])
-        self.grid = grid
-        self.count = 0
+        self.visited = grid
 
         def dfs(i, j):
-            if 0 <= i < self.m and 0 <= j < self.n and self.grid[i][j] == "1":
+            if i < 0 or i >= self.m or j < 0 or j >= self.n or self.visited[i][j] == "0":
+                return
 
-                self.grid[i][j] = "0"
-                dfs(i, j - 1)
-                dfs(i, j + 1)
-                dfs(i - 1, j)
-                dfs(i + 1, j)
+            self.visited[i][j] = "0"
+            dfs(i - 1, j)
+            dfs(i + 1, j)
+            dfs(i, j - 1)
+            dfs(i, j + 1)
 
+        ret = 0
         for i in range(self.m):
             for j in range(self.n):
-                if self.grid[i][j] == "1":
-                    self.count += 1
+                if self.visited[i][j] == "1":
+                    ret += 1
                     dfs(i, j)
 
-        return self.count
+        return ret
