@@ -73,7 +73,6 @@ def is_valid_bst(root: Optional[TreeNode]) -> bool:
 #         self.left = left
 #         self.right = right
 class Solution:
-
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         self.value = float("-inf")
 
