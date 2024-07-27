@@ -18,7 +18,6 @@ We are to perform the deep copy without altering the structure or values of the 
 
 
 class Node:
-
     def __init__(self, value=None, children=None):
         """
 

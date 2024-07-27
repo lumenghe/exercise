@@ -18,7 +18,6 @@ Lastly, the output should be provided using the NodeCopy class, which is essenti
 
 
 class Node:
-
     def __init__(self, val=0, left=None, right=None, random=None):
         self.val = val
         self.left = left
