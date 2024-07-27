@@ -43,7 +43,6 @@ Constraints:
 #         self.right = right
 class SolutionWrong:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-
         def max_sum(node):
             if node is None:
                 return 0

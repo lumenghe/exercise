@@ -46,7 +46,6 @@ class TreeNode:
 
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-
         def dfs(node, level):
             if node is None:
                 return
@@ -67,7 +66,6 @@ class Solution:
 
 class Solution1:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-
         def dfs(node, level):
             if node is None:
                 return
