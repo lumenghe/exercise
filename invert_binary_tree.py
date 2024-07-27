@@ -42,7 +42,6 @@ Constraints:
 #         self.right = right
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-
         def dfs(node):
             if node is None:
                 return

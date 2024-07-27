@@ -15,7 +15,6 @@ from typing import List
 
 
 class Solution:
-
     def validTree(self, num_nodes: int, edges: List[List[int]]) -> bool:
         # Helper function to find the root of a node 'x'.
         # Uses path compression to flatten the structure for faster future lookups.

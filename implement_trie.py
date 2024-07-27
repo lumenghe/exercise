@@ -45,7 +45,6 @@ Constraints:
 
 
 class TrieSlow:
-
     def __init__(self):
         self.list = []
 
@@ -70,7 +69,6 @@ class TrieSlow:
 
 
 class Trie:
-
     def __init__(self):
         self.root = {}
 
