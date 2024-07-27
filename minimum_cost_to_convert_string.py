@@ -53,9 +53,10 @@ Constraints:
 
 """
 
+
 class Solution:
     CHAR_COUNT = 26
-    INF = float('inf')
+    INF = float("inf")
 
     def minimumCost(self, source: str, target: str, original: List[str], changed: List[str], cost: List[int]) -> int:
         conversionGraph = self.buildConversionGraph(original, changed, cost)
@@ -67,8 +68,8 @@ class Solution:
         for i in range(self.CHAR_COUNT):
             graph[i][i] = 0
         for i in range(len(cost)):
-            fromChar = ord(original[i]) - ord('a')
-            toChar = ord(changed[i]) - ord('a')
+            fromChar = ord(original[i]) - ord("a")
+            toChar = ord(changed[i]) - ord("a")
             graph[fromChar][toChar] = min(graph[fromChar][toChar], cost[i])
         return graph
 
@@ -83,8 +84,8 @@ class Solution:
     def computeTotalConversionCost(self, source: str, target: str, graph: List[List[int]]) -> int:
         totalCost = 0
         for i in range(len(source)):
-            sourceChar = ord(source[i]) - ord('a')
-            targetChar = ord(target[i]) - ord('a')
+            sourceChar = ord(source[i]) - ord("a")
+            targetChar = ord(target[i]) - ord("a")
             if sourceChar != targetChar:
                 if graph[sourceChar][targetChar] == self.INF:
                     return -1

@@ -8,7 +8,6 @@ Our goal is to compute the sum of all integers in nestedList each weighted by it
 
 
 def depth_sum(nested_list: list) -> int:
-
     def element_sum(sub_list, level):
         sub_sum = 0
         for element in sub_list:
