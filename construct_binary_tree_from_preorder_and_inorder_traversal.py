@@ -41,7 +41,6 @@ Constraints:
 #         self.right = right
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-
         def set_sub_tree(sub_preoder, sub_inorder):
             if sub_preoder == []:
                 return None
