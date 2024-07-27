@@ -41,7 +41,6 @@ Examples:
 
 
 class Node:
-
     def __init__(self, value=None, children=None):
 
         self.value = value  # The value contained in the node

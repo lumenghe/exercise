@@ -52,7 +52,6 @@ Follow up:
 
 
 class MedianFinderSlow:
-
     def __init__(self):
         self.nums = []
 
@@ -68,7 +67,6 @@ class MedianFinderSlow:
 
 
 class MedianFinder:
-
     def __init__(self):
         self.lo = []
         self.hi = []

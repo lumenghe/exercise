@@ -53,7 +53,6 @@ class TreeNode:
 
 
 class FindElements:
-
     def __init__(self, root: Optional[TreeNode]):
         def dfs(prev):
             if prev.left is None and prev.right is None:
