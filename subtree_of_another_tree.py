@@ -44,7 +44,6 @@ Constraints:
 #         self.right = right
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-
         def check_sub_tree(node1, node2):
             if node1 is None and node2 is None:
                 return True

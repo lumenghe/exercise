@@ -55,7 +55,6 @@ def is_same_tree(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
 
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-
         def check_node(node1, node2):
             if node1 is None and node2 is None:
                 return True

@@ -42,7 +42,6 @@ Constraints:
 
 
 class CodecWrong:
-
     def serialize(self, root):
         """Encodes a tree to a single string.
 
@@ -93,7 +92,6 @@ class CodecWrong:
 
 
 class Codec:
-
     def serialize(self, root):
         """Encodes a tree to a single string.
 
