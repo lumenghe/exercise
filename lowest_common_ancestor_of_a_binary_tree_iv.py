@@ -46,7 +46,6 @@ class TreeNode:
 
 
 class Solution:
-
     def lowestCommonAncestor(self, root: TreeNode, nodes: list[TreeNode]) -> TreeNode:
         def dfs(node, target, node_path):
             if node is None:

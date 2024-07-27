@@ -49,7 +49,6 @@ from typing import List
 
 
 class KthLargestWrong:
-
     def __init__(self, k: int, nums: List[int]):
         self.nums = nums
         self.k = k
@@ -64,7 +63,6 @@ class KthLargestWrong:
 
 
 class KthLargest:
-
     def __init__(self, k: int, nums: List[int]):
         # Initialize min-heap with the first k elements
         self.minHeap, self.k = nums, k
