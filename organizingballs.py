@@ -78,23 +78,18 @@ For each query, print Possible on a new line if David can satisfy the conditions
 
 
 def organizingContainers(container):
-    count = [0] * len(container[0])
-    for i in container:
-        temp = 0
-        for j in i:
-            count[temp] += j
-            temp += 1
-    temp = 0
-    for i in count:
-        flag = False
-        for j in container:
-            color = i - j[temp]
-            left = sum(j) - j[temp]
-            if color == left:
-                flag = True
-        if flag == False:
-            return "Impossible"
-    return "Possible"
+    n = len(container)
+    row = [0] * n
+    col = [0] * n
+    for i in range(n):
+        for j in range(n):
+            row[i] += container[i][j]
+            col[j] += container[j][i]
+    if sorted(row) == sorted(col):
+        return "Possible"
+
+    return "Impossible"
 
 
 print(organizingContainers([[1, 1], [1, 1]]))
+print(organizingContainers([[1, 3, 1], [2, 1, 2], [3, 3, 3]]))
