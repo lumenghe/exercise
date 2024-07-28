@@ -75,23 +75,26 @@ Output Format
 For each query, print Possible on a new line if David can satisfy the conditions above for the given matrix. Otherwise, print Impossible.
 
 """
+
+
 def organizingContainers(container):
-    count = [0]*len(container[0])
+    count = [0] * len(container[0])
     for i in container:
         temp = 0
         for j in i:
-            count[temp]+=j
-            temp+=1
+            count[temp] += j
+            temp += 1
     temp = 0
     for i in count:
         flag = False
         for j in container:
             color = i - j[temp]
-            left = sum(j)-j[temp]
+            left = sum(j) - j[temp]
             if color == left:
                 flag = True
         if flag == False:
             return "Impossible"
     return "Possible"
 
-print(organizingContainers([[1,1],[1,1]]))
+
+print(organizingContainers([[1, 1], [1, 1]]))
