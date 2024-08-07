@@ -47,6 +47,23 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
+class SolutionWrong:
+    def maxAncestorDiff(self, root: Optional[TreeNode]) -> int:
+        def dfs(node, max_value, min_value):
+            if node is None:
+                return float('-inf'), float('inf')
+
+            left_max, left_min = dfs(node.left, max_value, min_value)
+            right_max, right_min = dfs(node.right, max_value, min_value)
+
+            return max(left_max, right_max, node.val), min(left_min, right_min, node.val)
+
+        root_max, root_min = dfs(root, float('-inf'), float('inf'))
+
+        return root_max - root_min
+
+
 class SolutionOther:
     def maxAncestorDiff(self, root: Optional[TreeNode]) -> int:
         m = [0]
