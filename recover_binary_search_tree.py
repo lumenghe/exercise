@@ -99,4 +99,3 @@ class Solution:
             right -= 1
 
         self.path[left].val, self.path[right].val = self.path[right].val, self.path[left].val
-
