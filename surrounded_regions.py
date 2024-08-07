@@ -71,7 +71,7 @@ class Solution:
             board[i][j] = "#"
             for ii, jj in [(i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)]:
                 if 0 <= ii < m and 0 <= jj < n and board[ii][jj] == "O":
-                    board[ii][jj] = "#"
+                    # board[ii][jj] = "#"
                     self.safe.append((ii, jj))
             # board = dfs(i, j+1, board)
             # board = dfs(i, j-1, board)
