@@ -65,3 +65,38 @@ def recover_tree(root: Optional[TreeNode]) -> None:
         right -= 1
 
     visited[left].val, visited[right].val = visited[right].val, visited[left].val
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def recoverTree(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        self.path = []
+
+        def dfs(node):
+            if node is None:
+                return
+
+            dfs(node.left)
+            self.path += [node]
+            dfs(node.right)
+
+        dfs(root)
+        current_value = self.path[0].val
+        left = 0
+        right = len(self.path) - 1
+        while left < (len(self.path) - 1) and self.path[left].val < self.path[left + 1].val:
+            left += 1
+
+        while right > 0 and self.path[right].val > self.path[right - 1].val:
+            right -= 1
+
+        self.path[left].val, self.path[right].val = self.path[right].val, self.path[left].val
+
