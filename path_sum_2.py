@@ -74,6 +74,7 @@ def path_sum(self, root: Optional[TreeNode], target_sum: int) -> list[list[int]]
             result.append(solution)
     return result
 
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -86,16 +87,16 @@ class SolutionWrong:
 
         if root is None:
             return []
+
         def dfs(node, path, path_sum):
             if node is None:
                 if path_sum == targetSum and path not in self.ret:
                     self.ret.append(path)
                 return
 
-            dfs(node.left, path + [node.val], path_sum+node.val)
-            dfs(node.right, path + [node.val], path_sum+node.val)
+            dfs(node.left, path + [node.val], path_sum + node.val)
+            dfs(node.right, path + [node.val], path_sum + node.val)
 
         dfs(root, [], 0)
 
         return self.ret
-
