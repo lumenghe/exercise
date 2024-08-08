@@ -100,3 +100,6 @@ class SolutionWrong:
         dfs(root, [], 0)
 
         return self.ret
+# this solution is wrong as
+# root = [1,2], targetSum=1
+#my solution is [[1]]. expected is []
