@@ -39,7 +39,7 @@ Constraints:
 
 """
 
-from typing import Optional
+from typing import List, Optional
 
 
 # Definition for a binary tree node.
@@ -105,3 +105,32 @@ class SolutionWrong:
 # this solution is wrong as
 # root = [1,2], targetSum=1
 # my solution is [[1]]. expected is []
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        self.ret = []
+
+        if root is None:
+            return []
+
+        def dfs(node, path, path_sum):
+            if node.left is None and node.right is None:
+                if (path_sum + node.val) == targetSum:
+                    self.ret.append(path + [node.val])
+                return
+
+            if node.left is not None:
+                dfs(node.left, path + [node.val], path_sum + node.val)
+            if node.right is not None:
+                dfs(node.right, path + [node.val], path_sum + node.val)
+
+        dfs(root, [], 0)
+
+        return self.ret
