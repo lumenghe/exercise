@@ -143,7 +143,7 @@ def longest_palindrome(s: str) -> str:
     return Max_Str
 
 
-class SolutionVerySlow:
+class SolutionVerySlowO3:
     def longestPalindrome(self, s: str) -> str:
         if len(s) == 1:
             return s
@@ -162,6 +162,27 @@ class SolutionVerySlow:
                     ret_left = left
                     ret_right = right
         return s[ret_left : ret_right + 1]
+
+
+class Solution:
+    def longestPalindromeO2(self, s: str) -> str:
+        def from_center(left, right):
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                left -= 1
+                right += 1
+
+            return s[left + 1 : right]
+
+        ret = s[0]
+        for i in range(len(s) - 1):
+            first = from_center(i, i)
+            second = from_center(i, i + 1)
+            if len(first) > len(ret):
+                ret = first
+            if len(second) > len(ret):
+                ret = second
+
+        return ret
 
 
 if __name__ == "__main__":
