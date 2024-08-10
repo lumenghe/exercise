@@ -54,6 +54,31 @@ Constraints:
 """
 
 
+class SolutionWrong:
+    def numDecodings(self, s: str) -> int:
+        if not s or s[0] == "0":
+            return 0
+
+        dp = [0 for _ in range(len(s) + 1)]
+        dp[0] = 1
+        dp[1] = 1
+        for index in range(1, len(s)):
+            current = int(s[index])
+            print("current1=", current, index, dp)
+            if current == 0:
+                if s[index - 1] in ["1", "2"]:
+                    dp[index + 1] = dp[index - 1]
+                else:
+                    return 0
+            elif 0 < current <= 6 and s[index - 1] in ["1", "2"]:
+                dp[index + 1] = dp[index] + dp[index - 1]
+            else:
+                dp[index + 1] = dp[index]
+            print("current2=", current, index, dp)
+
+        return dp[len(s)]
+
+
 class Solution:
     def numDecodings(self, s: str) -> int:
         if s == "" or s[0] == "0":
