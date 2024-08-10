@@ -143,6 +143,27 @@ def longest_palindrome(s: str) -> str:
     return Max_Str
 
 
+class SolutionVerySlow:
+    def longestPalindrome(self, s: str) -> str:
+        if len(s) == 1:
+            return s
+
+        def is_palindrome(left, right):
+            sub = s[left : right + 1]
+            return sub == sub[::-1]
+
+        max_length = 1
+        ret_left = 0
+        ret_right = 0
+        for left in range(len(s)):
+            for right in range(left + 1, len(s)):
+                if is_palindrome(left, right) and max_length < (right - left + 1):
+                    max_length = right - left + 1
+                    ret_left = left
+                    ret_right = right
+        return s[ret_left : ret_right + 1]
+
+
 if __name__ == "__main__":
 
     print(longest_palindrome(s="babaddtattarrattatddetartrateedredividerb"))
