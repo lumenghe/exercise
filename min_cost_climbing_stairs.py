@@ -76,7 +76,7 @@ class SolutionBetter:
         return min(a, b)
 
 
-class Solution:
+class Solution3:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         dp = [0 for _ in range(len(cost) + 2)]
         dp[1] = cost[0]
@@ -87,3 +87,13 @@ class Solution:
                 dp[i] = min(dp[i - 2], dp[i - 1]) + cost[i - 1]
 
         return min(dp[len(cost)], dp[len(cost) + 1])
+
+
+class SolutionBetterThanSolution3:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        dp = [0 for _ in range(len(cost) + 1)]
+        dp[1] = cost[0]
+        for i in range(2, len(cost) + 1):
+            dp[i] = min(dp[i - 2], dp[i - 1]) + cost[i - 1]
+
+        return min(dp[len(cost)], dp[len(cost) - 1])
