@@ -32,6 +32,8 @@ Constraints:
 
 """
 
+from typing import Optional
+
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -40,7 +42,7 @@ Constraints:
 #         self.left = left
 #         self.right = right
 class Solution:
-    def allPossibleFBT(self, n: int) -> List[Optional[TreeNode]]:
+    def allPossibleFBT(self, n: int) -> list[Optional[TreeNode]]:
 
         if n == 1:
             return [TreeNode(0)]
