@@ -74,3 +74,16 @@ class SolutionBetter:
             b = min(a, b) + cost[i]
             a = temp
         return min(a, b)
+
+
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        dp = [0 for _ in range(len(cost) + 2)]
+        dp[1] = cost[0]
+        for i in range(2, len(cost) + 2):
+            if i == (len(cost) + 1):
+                dp[i] = min(dp[i - 2], dp[i - 1])
+            else:
+                dp[i] = min(dp[i - 2], dp[i - 1]) + cost[i - 1]
+
+        return min(dp[len(cost)], dp[len(cost) + 1])
