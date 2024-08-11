@@ -1,4 +1,3 @@
-
 """
 The Tribonacci sequence Tn is defined as follows: 
 
@@ -30,18 +29,18 @@ Constraints:
 
 """
 
+
 class Solution:
     def tribonacci(self, n: int) -> int:
         if n == 0:
             return 0
-        if n==1 or n==2:
+        if n == 1 or n == 2:
             return 1
         a, b, c = 0, 1, 1
-        for i in range(3, n+1):
+        for i in range(3, n + 1):
             ret = a + b + c
             a = b
             b = c
-            c= ret
-
+            c = ret
 
         return ret
