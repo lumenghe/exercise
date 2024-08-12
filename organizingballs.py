@@ -86,6 +86,7 @@ def organizingContainers(container):
             row[i] += container[i][j]
             col[j] += container[j][i]
     if sorted(row) == sorted(col):
+        print(sorted(row), sorted(col))
         return "Possible"
 
     return "Impossible"
