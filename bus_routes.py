@@ -34,3 +34,39 @@ Constraints:
     0 <= source, target < 106
 
 """
+
+from functools import reduce
+
+
+class SolutionWrong:
+    def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
+        stops = set(reduce(lambda x, y: x + y, routes))
+        stop_graphs = {i: [] for i in stops}
+        bus_graphs = {index: route for index, route in enumerate(routes)}
+        print(bus_graphs)
+        self.solution = []
+        for index, route in enumerate(routes):
+            for stop in route:
+                stop_graphs[stop].append(index)
+        visited_stop = []
+
+        def dfs(stop, target, path):
+            if stop == target:
+                self.solution.append(path)
+                print("path=", path)
+                return
+            for bus in stop_graphs[stop]:
+                if bus not in path:
+                    path.append(bus)
+                    print("new path=", path)
+                    for new_stop in bus_graphs[bus]:
+                        dfs(new_stop, target, path + [bus])
+
+        dfs(source, target, [])
+        if len(self.solution) == 0:
+            return -1
+        ret = float("inf")
+        for sol in self.solution:
+            print(sol)
+            ret = min(ret, len(set(sol)))
+        return ret
