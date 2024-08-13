@@ -37,3 +37,27 @@ Constraints:
     All strings consist of lowercase English letters only.
 
 """
+
+
+class Solution:
+    def peopleIndexes(self, favoriteCompanies: list[list[str]]) -> list[int]:
+        answer: list = []
+        favoriteCompanies = [set(comapnies) for comapnies in favoriteCompanies]
+        print(favoriteCompanies)
+        for index, companies in enumerate(favoriteCompanies):
+            controller: bool = False
+            for others in favoriteCompanies:
+                if companies != others and others >= companies:
+                    controller = True
+                    break
+
+            if not controller:
+                answer.append(index)
+
+        answer.sort()
+        return answer
+
+
+favoriteCompanies = [["leetcode", "google", "facebook"], ["leetcode", "amazon"], ["facebook", "google"]]
+s = Solution()
+print(s.peopleIndexes(favoriteCompanies))
