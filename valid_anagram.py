@@ -42,5 +42,5 @@ class Solution:
 
 
 s = Solution()
-ret = s.isAnagram(s="hello!!", t="el!!loh")
+ret = s.isAnagram(s="hello!!@@", t="@@el!!loh")
 print(ret)
