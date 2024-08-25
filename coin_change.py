@@ -56,6 +56,21 @@ class Solution:
         return dp[amount]
 
 
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+
+        dp = [0] + [amount + 1] * amount
+
+        for coin in coins:
+            for index in range(1, amount + 1):
+                if index >= coin:
+                    dp[index] = min(dp[index], dp[index - coin] + 1)
+
+        dp = [-1 if dp[index] == (amount + 1) else dp[index] for index in range(amount + 1)]
+
+        return dp[amount]
+
+
 coins = [1, 2, 5]
 s = Solution()
 s.coinChange(coins, 11)
