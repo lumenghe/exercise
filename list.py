@@ -1,10 +1,10 @@
-class SingleList(object):
+class SingleList:
     def __init__(self, value: int):
         self.value = value
         self.next = None
 
 
-class DoubleList(object):
+class DoubleList:
     def __init__(self, value: int):
         self.value = value
         self.next = None
