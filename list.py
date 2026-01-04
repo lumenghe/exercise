@@ -188,17 +188,13 @@ def revert_single(head):
 
 
 def revert_double(head):
-    """
-    Revert a double-linked list (return the former last element as head of the new list)
-    """
-
     prev = head
     current = head.next
 
     while prev.next:
         prev.next = prev.prev
         prev.prev = current
-        next = current.next
+        #next = current.next
         prev = current
         current = current.next
 
@@ -207,8 +203,8 @@ def revert_double(head):
     return prev
 
 
-# print_double(double_example)
-# print_double(revert_double(double_example))
+print_double(double_example)
+print_double(revert_double(double_example))
 
 
 def get_element_single(head, i):
