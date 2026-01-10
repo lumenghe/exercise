@@ -155,13 +155,13 @@ def max_double(head):
     Get maximum of a double-linked list
     """
     current = head
-    max = head.value
+    max_value = head.value
     while current:
-        if max < current.value:
-            max = current.value
+        if max_value < current.value:
+            max_value = current.value
         current = current.next
 
-    return max
+    return max_value
 
 
 # print("max double=", max_double(double_example) == max(list_example))
