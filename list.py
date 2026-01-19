@@ -26,7 +26,7 @@ def list2single(l):
         current.next = next
         next = current
 
-    return current
+    return next
 
 
 def list2double(l):
@@ -41,7 +41,7 @@ def list2double(l):
             next.prev = current
         next = current
 
-    return current
+    return next
 
 
 def print_single(head):
@@ -188,19 +188,18 @@ def revert_single(head):
 
 
 def revert_double(head):
-    prev = head
-    current = head.next
+    prev = None
+    current = head
 
-    while prev.next:
-        prev.next = prev.prev
-        prev.prev = current
-        #next = current.next
+    while current:
+        nxt = current.next
+        current.next = prev
+        current.prev = nxt
         prev = current
-        current = current.next
+        current = nxt
 
-    prev.next = prev.prev
-    prev.prev = None
     return prev
+
 
 
 print_double(double_example)
