@@ -359,6 +359,14 @@ def concatenate_single(head1, head2):
     return head1
 
 
+single_example1 = list2single(list_example)
+
+single_example2 = list2single(list_example)
+
+ret = concatenate_single(single_example1, single_example2)
+
+print_single(ret)
+
 def concatenate_double(head1, head2):
     """
     Concatenate two double-linked lists, head of the new list is head of the first list
@@ -372,6 +380,13 @@ def concatenate_double(head1, head2):
     return head1
 
 
+double_example1 = list2double(list_example)
+
+double_example2 = list2double(list_example)
+
+ret = concatenate_double(double_example1, double_example2)
+
+print_double(ret)
 def split_single(head):
     """
     Splits a single-linked list into two lists by separating even and odd positions, returning heads for both new lists
